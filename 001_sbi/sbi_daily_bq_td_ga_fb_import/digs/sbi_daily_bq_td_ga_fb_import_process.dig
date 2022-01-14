@@ -1,0 +1,34 @@
+_error:
+  +call_mail_error:
+    call>: mail_error.dig
+
++call_start_process:
+  _export:
+    tmp:
+      mode: ${process.record_process.mode}
+      status: "START"
+      process_name_sub: "__GLOBAL__"
+  call>: record_process.dig
+
++call_mail_start:
+  call>: mail_start.dig
+
++loop_process_data:
+  _parallel: 
+    limit: ${process.loop_process_data.parallel}
+  for_each>:
+    task: ${process.loop_process_data.task_list}
+  _do:
+    +call_process_data:
+      call>: loop_process_data/${task}
+
++call_mail_success:
+  call>: mail_success.dig
+
++call_end_process:
+  _export:
+    tmp:
+      mode: ${process.record_process.mode}
+      status: "END"
+      process_name_sub: "__GLOBAL__"
+  call>: record_process.dig

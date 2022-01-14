@@ -1,0 +1,50 @@
+# td settings
+#td:
+#  database: 
+
+# mail settings
+mail:
+
+  # start mail settings
+  start_subject: "[START][STG]${init.process_name}"
+
+  # success mail settings
+  success_subject: "[SUCCESS][STG]${init.process_name}"
+
+  # error mail settings
+  error_subject: "[ERROR][STG]${init.process_name}"
+
+  # sla mail settings
+  sla_subject: "[SLA][STG]${init.process_name}"
+
+# control db settings
+control:
+  database: incudata_test
+  table: ${init.process_name}_control_stg
+
+# process settings
+process:
+
+  # loop calculate data setting
+  loop_process_data:
+
+    # parallel 0:multi full 1:single 2~:multi
+    parallel: 1
+
+    # sub_parallel 0:multi full 1:single 2~:multi
+    sub_parallel: 2
+
+  # record process setting
+  record_process:
+
+    # all process start end record true/false
+    mode: true
+
+    # loop get data process start end record true/false
+    sub_mode: true
+
+    # record database
+    database: incudata_test
+
+    # record table
+    table: ${init.process_name}_process_table_stg

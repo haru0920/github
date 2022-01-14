@@ -1,0 +1,40 @@
+name: id_master
+
+keys: 
+  - name: sitecatalys_hash_value
+    valid_regexp: '^[a-f0-9]{64}$'
+
+tables:
+  - database: l1_calculate_ph01
+    table: m_user_attrbute_info_oneday
+    key_columns:
+      - {column: sitecatalys_hash_value, key: sitecatalys_hash_value}
+
+  - database: l1_id_master
+    table: modified_td_click
+    incremental_columns: [time, sitecatalys_hash_value, td_ssc_id, td_client_id, td_global_id, td_url]
+    key_columns:
+      - {column: sitecatalys_hash_value, key: sitecatalys_hash_value}
+
+  - database: l1_id_master
+    table: modified_td_pageview
+    incremental_columns: [time, sitecatalys_hash_value, td_ssc_id, td_client_id, td_global_id, td_url]
+    key_columns:
+      - {column: sitecatalys_hash_value, key: sitecatalys_hash_value}
+
+canonical_ids:
+  - name: canonical_id
+    merge_by_keys: [sitecatalys_hash_value]
+
+master_tables:
+  - name: master_table
+    canonical_id: canonical_id
+    attributes:
+      - name: mkdb_id
+        valid_regexp: '^\d{11,}$'
+        source_columns:
+        - {table: m_user_attrbute_info_oneday}
+      - name: sitecatalys_hash_value
+        valid_regexp: '^[a-f0-9]{64}$'
+        source_columns:
+        - {table: m_user_attrbute_info_oneday}

@@ -1,0 +1,5 @@
+no,in_project_id,in_dataset,in_table,in_export_to_gcs,in_gcs_bucket,in_gcs_path_prefix,out_database,out_table,out_mode
+1,sbihdbigdata-gap,150213160,ga_sessions,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,bq_weblog_app,ga_investment,append
+2,sbi-sec-fstock-prd,analytics_243782827,events,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,bq_weblog_app,fb_fstock,append
+3,sbi-sec-hyperfx,analytics_236514611,events,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,bq_weblog_app,fb_fx,append
+4,kabu-push,analytics_178434707,events,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,bq_weblog_app,fb_stock,append

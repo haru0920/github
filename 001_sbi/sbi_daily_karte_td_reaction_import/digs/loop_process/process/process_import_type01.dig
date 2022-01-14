@@ -1,0 +1,38 @@
++record_process_start:
+  _export:
+    tmp:
+      mode: ${init.record_process.sub_mode}
+      status: "${init.record_process.status.start}"
+      process_name_sub: "${td.each.col04}_${td.each.col05}"
+      cnt: "-"
+  +call_start_process:
+    call>: ../../common/record_process.dig
+
++create_tables:
+  td_ddl>:
+  database: ${td.each.col04}
+  create_tables: ["${td.each.col05}"]
+
++process_import:
+  td_load>: ../../../configs/td_load/${td.each.col01}
+  database: ${td.each.col04}
+  table: ${td.each.col05}
+
++get_count:
+  _export:
+    tmp:
+      database_name: ${td.each.col04}
+      table_name: ${td.each.col05}
+  td>: ../../../queries/common/get_count.sql
+  database: ${td.each.col04}
+  store_last_results: true
+
++record_process_end:
+  _export:
+    tmp:
+      mode: ${init.record_process.sub_mode}
+      status: "${init.record_process.status.end}"
+      process_name_sub: "${td.each.col04}_${td.each.col05}"
+      cnt: "${td.last_results.cnt}"
+  +call_end_process:
+    call>: ../../common/record_process.dig

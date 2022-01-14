@@ -1,0 +1,327 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  parser:
+    type: csv
+    delimiter: ","
+    quote: "\""
+    escape: null
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_month, type: string}
+    - {name: uai_acct_del_flg, type: string}
+    - {name: uai_dealer_number, type: string}
+    - {name: uai_star_user_code, type: string}
+    - {name: uai_star_account, type: string}
+    - {name: uai_internet_kbn, type: string}
+    - {name: uai_corporation_kbn, type: string}
+    - {name: uai_zip_code_first, type: string}
+    - {name: uai_zip_code_last, type: string}
+    - {name: uai_address_kanji1, type: string}
+    - {name: uai_address_kana1, type: string}
+    - {name: uai_address_status, type: string}
+    - {name: uai_address_update, type: string}
+    - {name: uai_occupation, type: string}
+    - {name: uai_phone_flg, type: string}
+    - {name: uai_sex_kbn, type: string}
+    - {name: uai_birth_era, type: string}
+    - {name: uai_birth_date, type: string}
+    - {name: uai_birth_day, type: string}
+    - {name: uai_all_acct_close, type: string}
+    - {name: uai_f_relationship, type: string}
+    - {name: uai_f_relationship_others, type: string}
+    - {name: uai_f_relationship_occpation, type: string}
+    - {name: uai_f_relationship_executive, type: string}
+    - {name: uai_f_relationship_position_na, type: string}
+    - {name: uai_office_after_kbn, type: string}
+    - {name: uai_office_occpation, type: string}
+    - {name: uai_office_presentation, type: string}
+    - {name: uai_office_executive, type: string}
+    - {name: uai_office_position_name, type: string}
+    - {name: uai_office_zip_code_first, type: string}
+    - {name: uai_office_zip_code_last, type: string}
+    - {name: uai_office_address_kanji1, type: string}
+    - {name: uai_office_daihyo_kbn, type: string}
+    - {name: uai_office_dairi_kbn, type: string}
+    - {name: uai_insider_kbn, type: string}
+    - {name: uai_bank_type_kbn, type: string}
+    - {name: uai_bank_post_kbn, type: string}
+    - {name: uai_bank_date, type: string}
+    - {name: uai_currency_code, type: string}
+    - {name: uai_qa_investment_plan, type: string}
+    - {name: uai_qa_investment_plan_other, type: string}
+    - {name: uai_qa_fund_character, type: string}
+    - {name: uai_qa_fund_character_other, type: string}
+    - {name: uai_qa_income_form, type: string}
+    - {name: uai_qa_income_form_other, type: string}
+    - {name: uai_qa_trading_motive, type: string}
+    - {name: uai_qa_trading_motive_other, type: string}
+    - {name: uai_qa_employment_period, type: string}
+    - {name: uai_qa_employment_period_other, type: string}
+    - {name: uai_qa_annual_income, type: string}
+    - {name: uai_qa_financial_assets, type: string}
+    - {name: uai_qa_interested_trading, type: string}
+    - {name: uai_qa_interested_trading_othe, type: string}
+    - {name: uai_exp_stock_kbn, type: string}
+    - {name: uai_exp_stock, type: string}
+    - {name: uai_exp_stock_status, type: string}
+    - {name: uai_exp_debenture_kbn, type: string}
+    - {name: uai_exp_debenture, type: string}
+    - {name: uai_exp_debenture_status, type: string}
+    - {name: uai_exp_cb_kbn, type: string}
+    - {name: uai_exp_cb, type: string}
+    - {name: uai_exp_cb_status, type: string}
+    - {name: uai_exp_margin_kbn, type: string}
+    - {name: uai_exp_margin, type: string}
+    - {name: uai_exp_margin_status, type: string}
+    - {name: uai_exp_warrant_kbn, type: string}
+    - {name: uai_exp_warrant, type: string}
+    - {name: uai_exp_warrant_status, type: string}
+    - {name: uai_exp_futureop_kbn, type: string}
+    - {name: uai_exp_futureop, type: string}
+    - {name: uai_exp_futureop_status, type: string}
+    - {name: uai_exp_savedtypefund_kbn, type: string}
+    - {name: uai_exp_savedtypefund, type: string}
+    - {name: uai_exp_savedtypefund_status, type: string}
+    - {name: uai_exp_otherfund_kbn, type: string}
+    - {name: uai_exp_otherfund, type: string}
+    - {name: uai_exp_otherfund_status, type: string}
+    - {name: uai_exp_foreign_kbn, type: string}
+    - {name: uai_exp_foreign, type: string}
+    - {name: uai_exp_foreign_status, type: string}
+    - {name: uai_exp_other_name, type: string}
+    - {name: uai_exp_other_kbn, type: string}
+    - {name: uai_exp_other, type: string}
+    - {name: uai_exp_other_status, type: string}
+    - {name: uai_corp_capital, type: string}
+    - {name: uai_corp_organization_kbn1, type: string}
+    - {name: uai_corp_organization_kbn2, type: string}
+    - {name: uai_corp_settlement_term1, type: string}
+    - {name: uai_corp_settlement_term2, type: string}
+    - {name: uai_corp_procedure_kbn, type: string}
+    - {name: uai_corp_bank_kbn, type: string}
+    - {name: uai_corp_address_kanji1, type: string}
+    - {name: uai_corp_address_kana1, type: string}
+    - {name: uai_acct_status, type: string}
+    - {name: uai_acct_class_flg1, type: string}
+    - {name: uai_acct_class_flg2, type: string}
+    - {name: uai_open_acct_date, type: string}
+    - {name: uai_specific_kbn, type: string}
+    - {name: uai_specific_start_date, type: string}
+    - {name: uai_specific_stop_date, type: string}
+    - {name: uai_specific_m_kbn, type: string}
+    - {name: uai_update, type: string}
+    - {name: uai_nationality, type: string}
+    - {name: uai_greencard_hold, type: string}
+    - {name: uai_us_resident, type: string}
+    - {name: uai_resident_code, type: string}
+    - {name: uai_non_resident, type: string}
+    - {name: uai_naigai_corp_kbn, type: string}
+    - {name: uai_qi_ctgry_bunrui1, type: string}
+    - {name: uai_qi_ctgry_bunrui2, type: string}
+    - {name: uai_dm_bank_deposit_class, type: string}
+    - {name: uai_f_relation_birth_era, type: string}
+    - {name: uai_f_relation_birth_date, type: string}
+    - {name: uai_f_relation_birth_day, type: string}
+    - {name: uai_f_relation_office_code, type: string}
+    - {name: uai_f_relation_office_present, type: string}
+    - {name: uai_prefecture_code, type: string}
+    - {name: uai_specific_dividend_start_dt, type: string}
+    - {name: uai_specific_dividend_end_dt, type: string}
+    - {name: uai_interest_get_kbn, type: string}
+    - {name: uai_interest_country_kbn, type: string}
+    - {name: uai_interest_goods_kbn, type: string}
+    - {name: uai_interest_goods_sts1, type: string}
+    - {name: uai_interest_goods_sts2, type: string}
+    - {name: uai_interest_company_code, type: string}
+    - {name: uai_interest_right_kbn, type: string}
+    - {name: uai_interest_oan_kbn, type: string}
+    - {name: uai_interest_frequency, type: string}
+    - {name: uai_interest_gou1, type: string}
+    - {name: uai_interest_gou2, type: string}
+    - {name: uai_interest_country_code, type: string}
+    - {name: uai_distribution_get_kbn, type: string}
+    - {name: uai_distribution_country_kbn, type: string}
+    - {name: uai_distribution_goods_kbn, type: string}
+    - {name: uai_distribution_goods_sts1, type: string}
+    - {name: uai_distribution_goods_sts2, type: string}
+    - {name: uai_distribution_company_code, type: string}
+    - {name: uai_distribution_right_kbn, type: string}
+    - {name: uai_distribution_oan_kbn, type: string}
+    - {name: uai_distribution_frequency, type: string}
+    - {name: uai_distribution_gou1, type: string}
+    - {name: uai_distribution_gou2, type: string}
+    - {name: uai_distribution_country_code, type: string}
+    - {name: uai_zei_kbn_kokunai, type: string}
+    - {name: uai_zei_kbn_gaikabu, type: string}
+    - {name: uai_zei_kbn_gaisai, type: string}
+    - {name: uai_risk_kbn_kabu, type: string}
+    - {name: uai_risk_kbn_sai, type: string}
+    - {name: uai_risk_kbn_tensha, type: string}
+    - {name: uai_risk_kbn_gaisho, type: string}
+    - {name: uai_maruyu_tekikakusha_kbn, type: string}
+    - {name: uai_tokuyu_tekikakusha_kbn, type: string}
+    - {name: uai_houkatsudoui_date, type: string}
+    - {name: uai_isa_contract_kbn, type: string}
+    - {name: uai_isa_buy_current_year_kbn, type: string}
+    - {name: uai_isa_buy_next_year_kbn, type: string}
+    - {name: uai_shibo_date, type: string}
+    - {name: uai_isa_apply_status, type: string}
+    - {name: uai_isa_apply_status_before, type: string}
+    - {name: uai_isa_receipt_date, type: string}
+    - {name: uai_isa_apply_date, type: string}
+    - {name: uai_isa_open_date, type: string}
+    - {name: uai_isa_close_date, type: string}
+    - {name: uai_personal_specific_key, type: string}
+    - {name: uai_number_registration_state, type: string}
+    - {name: uai_corporation_number, type: string}
+    - {name: uai_number_acceptance_state, type: string}
+    - {name: uai_naikoku_hojin_info, type: string}
+    - {name: uai_jnisa_koza_kbn, type: string}
+    - {name: uai_jnisa_mkdb_id, type: string}
+    - {name: uai_jnisa_koza_no_new, type: string}
+    - {name: uai_jnisa_moto_mkdb_id, type: string}
+    - {name: uai_jnisa_moto_koza_no_new, type: string}
+    - {name: uai_jnisa_seigen_shuryo_ymd, type: string}
+    - {name: uai_jnisa_departure_date, type: string}
+    - {name: uai_jnisa_return_home_date, type: string}
+    - {name: uai_jnisa_sinsei_st, type: string}
+    - {name: uai_jnisa_sinsei_st_bf, type: string}
+    - {name: uai_jnisa_uketuke_ymd, type: string}
+    - {name: uai_jnisa_sinsei_ymd, type: string}
+    - {name: uai_jnisa_kaisetsu_ymd, type: string}
+    - {name: uai_jnisa_heisa_ymd, type: string}
+    - {name: uai_jnisa_corp_bank_kbn, type: string}
+    - {name: uai_jnisa_bank_code, type: string}
+    - {name: uai_jnisa_bank_branch_code, type: string}
+    - {name: uai_jnisa_bank_kanji, type: string}
+    - {name: uai_jnisa_bank_branch_kanji, type: string}
+    - {name: uai_jnisa_bank_deposit_class, type: string}
+    - {name: uai_jnisa_bank_account, type: string}
+    - {name: uai_jnisa_bank_account_name, type: string}
+    - {name: uai_jnisa_bank_type_kbn, type: string}
+    - {name: uai_jnisa_bank_post_kbn, type: string}
+    - {name: uai_jnisa_bank_date, type: string}
+    - {name: uai_jnisa_currency_code, type: string}
+    - {name: uai_jnisa_specific_kbn, type: string}
+    - {name: uai_jnisa_specific_start_date, type: string}
+    - {name: uai_jnisa_specific_stop_date, type: string}
+    - {name: uai_jnisa_specific_m_kbn, type: string}
+    - {name: uai_jnisa_fd_bank_code, type: string}
+    - {name: uai_jnisa_fd_bank_branch_code, type: string}
+    - {name: uai_jnisa_fd_bank_kanji, type: string}
+    - {name: uai_jnisa_fd_bank_branch_kanji, type: string}
+    - {name: uai_jnisa_fd_bank_dep_class, type: string}
+    - {name: uai_jnisa_fd_bank_account, type: string}
+    - {name: uai_jnisa_fd_bank_account_name, type: string}
+    - {name: uai_jnisa_dm_transfer_form, type: string}
+    - {name: uai_jnisa_dm_bank_code, type: string}
+    - {name: uai_jnisa_dm_bank_branch_code, type: string}
+    - {name: uai_jnisa_dm_bank_kanji, type: string}
+    - {name: uai_jnisa_dm_bank_branch_kanji, type: string}
+    - {name: uai_jnisa_dm_bank_dep_class, type: string}
+    - {name: uai_jnisa_dm_bank_account, type: string}
+    - {name: uai_jnisa_dm_bank_account_name, type: string}
+    - {name: uai_jnisa_member_account_no, type: string}
+    - {name: uai_jnisa_member_account_code, type: string}
+    - {name: uai_jnisa_prefecture_code, type: string}
+    - {name: uai_jnisa_specific_div_st_dt, type: string}
+    - {name: uai_jnisa_specific_div_ed_dt, type: string}
+    - {name: uai_jnisa_interest_get_kbn, type: string}
+    - {name: uai_jnisa_interest_country_kbn, type: string}
+    - {name: uai_jnisa_interest_goods_kbn, type: string}
+    - {name: uai_jnisa_interest_goods_sts1, type: string}
+    - {name: uai_jnisa_interest_goods_sts2, type: string}
+    - {name: uai_jnisa_interest_company_cd, type: string}
+    - {name: uai_jnisa_interest_right_kbn, type: string}
+    - {name: uai_jnisa_interest_oan_kbn, type: string}
+    - {name: uai_jnisa_interest_frequency, type: string}
+    - {name: uai_jnisa_interest_gou1, type: string}
+    - {name: uai_jnisa_interest_gou2, type: string}
+    - {name: uai_jnisa_interest_country_cd, type: string}
+    - {name: uai_jnisa_distribution_get_kbn, type: string}
+    - {name: uai_jnisa_dist_country_kbn, type: string}
+    - {name: uai_jnisa_distribut_goods_kbn, type: string}
+    - {name: uai_jnisa_distribut_goods_sts1, type: string}
+    - {name: uai_jnisa_distribut_goods_sts2, type: string}
+    - {name: uai_jnisa_distribut_company_cd, type: string}
+    - {name: uai_jnisa_distribut_right_kbn, type: string}
+    - {name: uai_jnisa_distribution_oan_kbn, type: string}
+    - {name: uai_jnisa_distribut_frequency, type: string}
+    - {name: uai_jnisa_distribution_gou1, type: string}
+    - {name: uai_jnisa_distribution_gou2, type: string}
+    - {name: uai_jnisa_distribut_country_cd, type: string}
+    - {name: uai_jnisa_contract_kbn, type: string}
+    - {name: uai_jnisa_buy_current_year_kbn, type: string}
+    - {name: uai_jnisa_buy_next_year_kbn, type: string}
+    - {name: uai_jnisa_perso_specific_key, type: string}
+    - {name: uai_jnisa_number_regist_state, type: string}
+    - {name: uai_jnisa_num_acceptance_state, type: string}
+    - {name: uai_number_upd_kbn, type: string}
+    - {name: uai_number_upd_date, type: string}
+    - {name: uai_jnisa_number_upd_kbn, type: string}
+    - {name: uai_jnisa_number_upd_date, type: string}
+    - {name: uai_bank_code, type: string}
+    - {name: uai_bank_branch_code, type: string}
+    - {name: uai_bank_kanji, type: string}
+    - {name: uai_bank_branch_kanji, type: string}
+    - {name: uai_bank_deposit_class, type: string}
+    - {name: uai_dm_transfer_form, type: string}
+    - {name: uai_dm_bank_code, type: string}
+    - {name: uai_dm_bank_branch_code, type: string}
+    - {name: uai_dm_bank_kanji, type: string}
+    - {name: uai_dm_bank_branch_kanji, type: string}
+    - {name: sitecatalys_hash_value, type: string}
+
+################################
+### START filter common parts ##
+################################
+filters:
+- type: add_time
+  to_column:
+    name: time
+    type: timestamp
+  from_value:
+    value: ${session_unixtime}
+##############################
+### END filter common parts ##
+##############################
+
+
+
+################################
+### START footer common parts ##
+################################
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

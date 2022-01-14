@@ -1,0 +1,150 @@
++judgment_loop_process_sql01:
+  _export:
+    group:
+      group1: "group1 = 'sql01'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+      start_date_commentout1: "--"
+      start_date_commentout2: ""
+
+  +loop_process_sql01:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++judgment_loop_process_sql02:
+  _export:
+    group:
+      group1: "group1 = 'sql02'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+      start_date_commentout1: "--"
+      start_date_commentout2: ""
+      threshold_param: 33333
+
+  +loop_process_sql02:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++judgment_loop_process_ms01:
+  _export:
+    group:
+      group1: "group1 = 'ms01'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_ms01:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++empty_table_activation01:
+  td_ddl>:
+  empty_tables: [report_funnel_vertical, report_payment_vertical, report_nisa_vertical]
+  database: ${database_name.l1}
+
++judgment_loop_process_activate01:
+  _export:
+    group:
+      group1: "group1 = 'activate01'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_activate01:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++rename_table_sql03:
+  td_ddl>:
+  rename_tables: [{from: "report_funnel_datamart", to: "tmp_report_funnel_datamart"}, {from: "report_payment_datamart", to: "tmp_report_payment_datamart"}, {from: "report_nisa_datamart", to: "tmp_report_nisa_datamart"}]
+  database: ${database_name.l1}
+
++judgment_loop_process_sql03:
+  _export:
+    group:
+      group1: "group1 = 'sql03'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_sql03:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++drop_table_sql03:
+  td_ddl>:
+  drop_tables: ["tmp_report_funnel_datamart", "tmp_report_payment_datamart", "tmp_report_nisa_datamart"]
+  database: ${database_name.l1}
+
++create_table_sql04:
+  td_ddl>:
+  create_tables: ["report_cohort_dataset", "report_cohort_dataset", "report_payment_dataset", "report_nisa_dataset"]
+  database: ${database_name.l2}
+
++judgment_loop_process_sql04:
+  _export:
+    group:
+      group1: "group1 = 'sql04'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_sql04:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++judgment_loop_process_export01:
+  _export:
+    group:
+      group1: "group1 = 'export01'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_export01:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}

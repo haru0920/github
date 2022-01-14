@@ -1,0 +1,169 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  parser:
+    type: csv
+    delimiter: ","
+    quote: null
+    escape: null
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_month, type: string}
+    - {name: customer_id, type: string}
+    - {name: br_comp_code, type: string}
+    - {name: input_file_id1, type: string}
+    - {name: input_file_id2, type: string}
+    - {name: group_id, type: string}
+    - {name: class_code, type: string}
+    - {name: sub_class, type: string}
+    - {name: int_user_code, type: string}
+    - {name: base_date, type: string}
+    - {name: principal_ind, type: string}
+    - {name: dealer_no, type: string}
+    - {name: occupation_ind_1, type: string}
+    - {name: occupation_ind_2, type: string}
+    - {name: internet_account_ind, type: string}
+    - {name: br_brand_ind, type: string}
+    - {name: br_domestic_fgn_ind, type: string}
+    - {name: br_brand_type_1, type: string}
+    - {name: br_brand_type_2, type: string}
+    - {name: br_st_right_ind, type: string}
+    - {name: br_n_o_ind, type: string}
+    - {name: br_ser_no, type: string}
+    - {name: br_sub_no_1, type: string}
+    - {name: br_sub_no_2, type: string}
+    - {name: br_list_cntry_cd, type: string}
+    - {name: search_product_l_cd, type: string}
+    - {name: search_product_m_cd, type: string}
+    - {name: search_product_s_cd, type: string}
+    - {name: product_cd1, type: string}
+    - {name: product_cd2, type: string}
+    - {name: product_cd3, type: string}
+    - {name: product_cd4, type: string}
+    - {name: product_cd5, type: string}
+    - {name: issue_currency_cd, type: string}
+    - {name: qty_unit_code, type: string}
+    - {name: price_mx_revise_value, type: string}
+    - {name: qty_revise_code, type: string}
+    - {name: rate_revise_value, type: string}
+    - {name: face_price, type: string}
+    - {name: currenct_price, type: string}
+    - {name: position_search_code1, type: string}
+    - {name: position_search_code2, type: string}
+    - {name: position_search_code3, type: string}
+    - {name: position_code_1, type: string}
+    - {name: position_code_2, type: string}
+    - {name: position_code_3, type: string}
+    - {name: position_code_4, type: string}
+    - {name: position_no, type: string}
+    - {name: sell_possible_ind, type: string}
+    - {name: exec_base_balance_t1, type: string}
+    - {name: the_day_sttl_balance_s0, type: string}
+    - {name: sttl_next_day_balance_s1, type: string}
+    - {name: balance, type: string}
+    - {name: acquire_rate, type: string}
+    - {name: acquire_price, type: string}
+    - {name: appraise_aquire_price, type: string}
+    - {name: base_date_rate, type: string}
+    - {name: appraise_market_price, type: string}
+    - {name: appraise_profit_loss_price, type: string}
+    - {name: qualified_collateral_flg, type: string}
+    - {name: jasdec_brand_ind, type: string}
+    - {name: tse_listed_foreign_st_flg, type: string}
+    - {name: position_date, type: string}
+    - {name: buy_trade_date, type: string}
+    - {name: deposit_route_ind_1, type: string}
+    - {name: deposit_route_ind_2, type: string}
+    - {name: deposit_detail_ind, type: string}
+    - {name: buy_market_ind, type: string}
+    - {name: buy_trade_ind, type: string}
+    - {name: withdraw_date, type: string}
+    - {name: sell_trade_date, type: string}
+    - {name: withdraw_reasons_ind, type: string}
+    - {name: withdraw_reason_detail_ind, type: string}
+    - {name: sell_market_ind, type: string}
+    - {name: sell_specity_no, type: string}
+    - {name: position_ind, type: string}
+    - {name: settled_ind, type: string}
+    - {name: loss_col_ind, type: string}
+    - {name: certificate_issued_ind, type: string}
+    - {name: certificate_type_ind, type: string}
+    - {name: certificate_no, type: string}
+    - {name: security_location_ind, type: string}
+    - {name: nominee_code, type: string}
+    - {name: nominated_date, type: string}
+    - {name: branch_changed_flg, type: string}
+    - {name: sell_forbidden_flg, type: string}
+    - {name: odd_stock_cert_type_flg, type: string}
+    - {name: non_marketable_flg, type: string}
+    - {name: stock_qty_ind, type: string}
+    - {name: unclaimed_flg, type: string}
+    - {name: registered_stockholder_code, type: string}
+    - {name: registered_stockholder_ind, type: string}
+    - {name: jasdec_col_date, type: string}
+    - {name: col_reasons_code, type: string}
+    - {name: nominee_participant_code, type: string}
+    - {name: hitokutei_kbn, type: string}
+    - {name: location_id, type: string}
+    - {name: cust_dep_date, type: string}
+    - {name: deposit_no_init, type: string}
+    - {name: sell_forbid_id, type: string}
+    - {name: location_cha_id, type: string}
+    - {name: isa_syutoku_nen, type: string}
+    - {name: hikazei_kigen_nen, type: string}
+    - {name: jnisa_account_kbn, type: string}
+    - {name: dummy01, type: string}
+
+################################
+### START filter common parts ##
+################################
+filters:
+- type: add_time
+  to_column:
+    name: time
+    type: timestamp
+  from_value:
+    value: ${session_unixtime}
+##############################
+### END filter common parts ##
+##############################
+
+- type: remove_columns
+  remove: ["dummy01"]
+
+################################
+### START footer common parts ##
+################################
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

@@ -1,0 +1,27 @@
+in:
+  type: bigquery
+  project_id: ${td.each.in_project_id}
+  auth_method: json_key
+  json_keyfile: 
+    content: ${secret:gcp.credential}
+  import_type: table
+  dataset: ${td.each.in_dataset}
+  table: ${td.each.in_table}_${moment(session_date).add(-4, 'days').format('YYYYMMDD')}
+  #incremental: true
+  #incremental_columns: [id]
+  export_to_gcs: ${td.each.in_export_to_gcs}
+  temp_dataset: ${td.each.in_dataset}
+  temp_table: td_export_${td.each.in_table}_${moment(session_date).add(-4, 'days').format('YYYYMMDD')}
+  gcs_bucket: ${td.each.in_gcs_bucket}
+  gcs_path_prefix: ${td.each.in_gcs_path_prefix}
+
+filters:
+- type: add_time
+  from_value:
+    mode: upload_time
+  to_column:
+    name: time
+
+out: 
+  type: td
+  mode: ${td.each.out_mode}

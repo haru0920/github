@@ -1,0 +1,118 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${secret:sftp.host}
+  user: ${secret:sftp.user}
+  port: ${secret:sftp.port}
+  # password: 
+  secret_key_passphrase: ${secret:sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${secret:sftp.secret_key_file}
+  user_directory_is_root: false
+  timeout: 600
+  max_connection_retry: 2
+  path_prefix: "/tduser/send/m_trade_history_migration"
+  parser:
+    type: csv
+    delimiter: ","
+    quote: null
+    escape: null
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_month, type: string}
+    - {name: customer_id, type: string}
+    - {name: search_product_l_cd, type: string}
+    - {name: search_product_m_cd, type: string}
+    - {name: search_product_s_cd, type: string}
+    - {name: product_cd1, type: string}
+    - {name: product_cd2, type: string}
+    - {name: product_cd3, type: string}
+    - {name: product_cd4, type: string}
+    - {name: product_cd5, type: string}
+    - {name: search_trade_l_cd, type: string}
+    - {name: search_trade_m_cd, type: string}
+    - {name: search_trade_s_cd, type: string}
+    - {name: trade_cd1, type: string}
+    - {name: trade_cd2, type: string}
+    - {name: trade_cd3, type: string}
+    - {name: trade_cd4, type: string}
+    - {name: trade_cd5, type: string}
+    - {name: brand_cd, type: string}
+    - {name: br_brand_ind, type: string}
+    - {name: br_domestic_fgn_ind, type: string}
+    - {name: br_brand_type_1, type: string}
+    - {name: br_brand_type_2, type: string}
+    - {name: br_comp_code, type: string}
+    - {name: br_st_right_ind, type: string}
+    - {name: br_n_o_ind, type: string}
+    - {name: br_ser_no, type: string}
+    - {name: br_sub_no_1, type: string}
+    - {name: br_sub_no_2, type: string}
+    - {name: br_list_cntry_cd, type: string}
+    - {name: formal_brand_name, type: string}
+    - {name: trade_date, type: string}
+    - {name: get_date, type: string}
+    - {name: order_no, type: string}
+    - {name: product_short_name, type: string}
+    - {name: trade_short_name1, type: string}
+    - {name: trade_short_name2, type: string}
+    - {name: capital_gain_tax_ind, type: string}
+    - {name: price, type: string}
+    - {name: new_trade_price, type: string}
+    - {name: issue_currency_name, type: string}
+    - {name: exchange_rate, type: string}
+    - {name: quantity, type: string}
+    - {name: quantity_unit, type: string}
+    - {name: fee, type: string}
+    - {name: consumption_tax, type: string}
+    - {name: accrued_interest_ind, type: string}
+    - {name: accrued_interest, type: string}
+    - {name: withholding_tax, type: string}
+    - {name: capital_gain_tax, type: string}
+    - {name: accurate_amount, type: string}
+    - {name: cancel_flg, type: string}
+    - {name: create_time, type: string}
+    - {name: dealer_no, type: string}
+    - {name: tokutei_koza_kbn, type: string}
+    - {name: hitokutei_kbn, type: string}
+
+################################
+### START filter common parts ##
+################################
+filters:
+- type: add_time
+  to_column:
+    name: time
+    type: timestamp
+  from_value:
+    value: ${session_unixtime}
+##############################
+### END filter common parts ##
+##############################
+
+
+################################
+### START footer common parts ##
+################################
+out: 
+  type: td
+  mode: append
+##############################
+### END footer common parts ##
+##############################

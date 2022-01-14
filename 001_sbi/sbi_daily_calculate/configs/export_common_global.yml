@@ -1,0 +1,8 @@
+# karte settings
+karte:
+  format: csv
+  headerLine: true
+  delimiter: ","
+  nullString: ""
+  newline: "LF"
+  applicationName: "Karte Connector"

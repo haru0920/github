@@ -1,0 +1,58 @@
+timezone: Asia/Tokyo
+
+#schedule:
+#  daily>: 13:00:00
+
+_export:
+  td:
+    database: l1_id_master
+  start_date: ${moment(session_date).add(-1, "days").format("YYYY-MM-DD 13:00:00 +09:00")}
+  end_date: ${moment(session_date).format("YYYY-MM-DD 13:00:00 +09:00")}
+  #start_date: "2021-08-11 00:00:00 +09:00"
+  #end_date: "2021-09-16 13:00:00 +09:00"
+
++rename_table:
+  td_ddl>:
+  rename_tables: 
+    - {from: "sitecatalys_hash_value_and_ssc_history", to: "tmp_history"}
+
++sitecatalys_hash_value_and_ssc_history:
+  td>: queries/sitecatalys_hash_value_and_ssc_history.sql
+  create_table: sitecatalys_hash_value_and_ssc_history
+  engine: hive
+  hive_engine_version: stable  
+
++modified_weblog:
+  for_each>:
+    table: [td_pageview, td_click]
+  _parallel: true
+  _do:
+    _export:
+      source_table: ${table}
+      destination_table: modified_${table}
+
+    +delete_data:
+      td>: queries/delete_modified_weblog.sql
+
+    +insert_modified_data:
+      td>: queries/modified_weblog.sql
+      insert_into: ${destination_table}
+      engine: hive
+      hive_engine_version: stable
+
+#+unification:
+#  http_call>:  https://api-cdp.treasuredata.co.jp/unifications/workflow_call
+#  headers:
+#    - authorization: ${secret:td.apikey}
+#  method: POST
+#  retry: true
+#  content_format: json
+#  content:
+#    early_access: true         # Required until GA
+#    full_refresh: false        # full refresh runs every 3 days if the value is true.
+#    unification:
+#      !include : configs/unify.yml     # Set YAML config file name
+
++drop_tmp_table:
+  td_ddl>:
+  drop_tables: ["tmp_history"]

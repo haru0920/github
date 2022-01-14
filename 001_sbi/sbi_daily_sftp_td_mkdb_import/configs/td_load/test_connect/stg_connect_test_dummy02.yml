@@ -1,0 +1,60 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}"
+  parser:
+    type: ${sftp.parser.type}
+    delimiter: ${sftp.parser.delimiter}
+    quote: ${sftp.parser.quote}
+    escape: ${sftp.parser.escape}
+    skip_header_lines: ${sftp.parser.skip_header_lines}
+    null_string: ${sftp.parser.null_string}
+    newline: ${sftp.parser.newline}
+    charset: ${sftp.parser.charset}
+    trim_if_not_quoted: ${sftp.parser.trim_if_not_quoted}
+    max_quoted_size_limit: ${sftp.parser.max_quoted_size_limit}
+    default_timezone: ${sftp.parser.default_timezone}
+    allow_optional_columns: ${sftp.parser.allow_optional_columns}
+    allow_extra_columns: ${sftp.parser.allow_extra_columns}
+    stop_on_invalid_record: ${sftp.parser.stop_on_invalid_record}
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: test01, type: string}
+    - {name: test02, type: string}
+    - {name: test03, type: string}
+    - {name: test04, type: long}
+    - {name: test05, type: double}
+    - {name: test06, type: long}
+
+################################
+### START footer common parts ##
+################################
+filters:
+- type: add_time
+  from_value:
+    mode: upload_time
+  to_column:
+    name: time
+
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

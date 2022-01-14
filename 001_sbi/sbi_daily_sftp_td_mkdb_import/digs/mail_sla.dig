@@ -1,0 +1,7 @@
++judgment_start_mail:
+  if>: ${init.mail.send_sla}
+  _do:
+    +sla_notice:
+      mail>: ../contents/mail_sla_body.txt
+      subject: ${mail.sla_subject}
+      to: [takaharu.okada@incudata.co.jp]

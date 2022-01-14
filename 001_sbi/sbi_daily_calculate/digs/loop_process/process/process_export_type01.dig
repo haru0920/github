@@ -1,0 +1,34 @@
++record_process_start:
+  _export:
+    tmp:
+      mode: ${record_process.sub_mode}
+      status: "START"
+      process_name_sub: "${td.each.col01}__${td.each.col04}"
+      cnt: "-"
+  +call_start_process:
+    call>: ../../common/record_process.dig
+
++process_export:
+  td>: ../../../queries/process/${td.each.col01}
+  database: ${td.each.col02}
+  engine: ${td.each.col04}
+  result_connection: ${td.each.col03}
+  result_settings:
+    bucket: ${td.each.col06}
+    path_prefix: ${td.each.col05}_${moment(session_time).format("YYYYMMDD")}.csv
+    format: ${karte.format}
+    headerLine: ${karte.headerLine}
+    delimiter: ${karte.delimiter}
+    nullString: ${karte.nullString}
+    newline: ${karte.newline}
+    applicationName: ${karte.applicationName}
+
++record_process_end:
+  _export:
+    tmp:
+      mode: ${record_process.sub_mode}
+      status: "${init.record_process.status.end}"
+      process_name_sub: "${td.each.col01}__${td.each.col04}"
+      cnt: "-"
+  +call_end_process:
+    call>: ../../common/record_process.dig

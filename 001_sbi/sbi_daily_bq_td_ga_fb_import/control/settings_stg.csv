@@ -1,0 +1,10 @@
+no,in_project_id,in_dataset,in_table,in_export_to_gcs,in_gcs_bucket,in_gcs_path_prefix,out_database,out_table,out_mode
+1,sbihdbigdata-gap,71638473,ga_sessions,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,incudata_test,ga_web,append
+2,sbihdbigdata-gap,222875362,ga_sessions,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,incudata_test,ga_fx,append
+3,sbihdbigdata-gap,150213160,ga_sessions,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,incudata_test,ga_investment,append
+4,sbihdbigdata-gap,178312957,ga_sessions,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,incudata_test,ga_stock,append
+5,sbihdbigdata-gap,226080897,ga_sessions,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,incudata_test,ga_futures,append
+6,sbi-sec-fstock-prd,analytics_243782827,events,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,incudata_test,fb_fstock,append
+7,sbi-sec-futures-prd,analytics_245135508,events,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,incudata_test,fb_futures,append
+8,sbi-sec-hyperfx,analytics_236514611,events,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,incudata_test,fb_fx,append
+9,kabu-push,analytics_178434707,events,TRUE,ft-4mmuatjitgya74x-2n-rtg42f6a,td_export_,incudata_test,fb_stock,append

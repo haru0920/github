@@ -1,0 +1,2 @@
+﻿no,define_filename,in_filepath,out_database,out_table,out_mode
+3,test_speed/m_bl_int_stock.yml,/tduser/send/tbl_ETINTRA_BL_INT_STOCK.csv,incudata_test,m_bl_int_stock,append

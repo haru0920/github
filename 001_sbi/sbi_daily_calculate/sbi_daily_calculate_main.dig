@@ -1,0 +1,47 @@
+timezone: Asia/Tokyo
+
+schedule:
+  daily>: 13:00:00
+
+_export:
+  init:
+    !include : configs/init_settings.yml
+  !include : configs/export_common_global.yml
+
+sla:
+  duration: 02:00:00
+  fail: false
+  alert: false
+  if>: ${init.mode == "pro"}
+  _do:
+    _export:
+      !include : configs/export_pro_global.yml
+
+    +call_mail_sla:
+      call>: digs/common/mail_sla.dig
+
+  _else_do:
+    _export:
+      !include : configs/export_stg_global.yml
+
+    +call_mail_sla:
+      call>: digs/common/mail_sla.dig
+
++echo_mode:
+  echo>: ${init.mode}
+
++main:
+  if>: ${init.mode == "pro"}
+  _do:
+    _export:
+      !include : configs/export_pro_global.yml
+
+    +call_process:
+      call>: digs/process_main.dig
+
+  _else_do:
+    _export:
+      !include : configs/export_stg_global.yml
+
+    +call_process:
+      call>: digs/process_main.dig

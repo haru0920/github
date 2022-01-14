@@ -1,0 +1,107 @@
++judgment_loop_process_sql01:
+  _export:
+    group:
+      group1: "group1 = 'sql01'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_sql01:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: ${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++judgment_loop_process_wf01_sql02:
+  _export:
+    group:
+      group1: "group1 = 'wf01_sql02'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_wf01_sql02:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++judgment_loop_process_ms01_sql03:
+  _export:
+    group:
+      group1: "group1 = 'ms01_sql03'"
+      group2: ""
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_ms01_sql03:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++judgment_loop_process_activate01_01:
+  _export:
+    group:
+      group1: ""
+      group2: "group2 = 'activate01_01'"
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_activate01_01:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++judgment_loop_process_sql04_01:
+  _export:
+    group:
+      group1: ""
+      group2: "group2 = 'sql04_01'"
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_sql04_01:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
++judgment_loop_process_export_01_01:
+  _export:
+    group:
+      group1: ""
+      group2: "group2 = 'export_01_01'"
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_export_01_01:
+    _parallel: 
+      limit: ${tmp.parallel}
+    
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}

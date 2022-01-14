@@ -1,0 +1,17 @@
++judgment_loop_process_create01_01:
+  _export:
+    group:
+      group1: ""
+      group2: "group2 = 'create01_01'"
+    tmp:
+      parallel: 0
+      hierarchy: 0
+
+  +loop_process_create01_01:
+    _parallel: 
+      limit: ${tmp.parallel}
+  
+    td_for_each>: ../../queries/common/get_control.sql
+    database: ${control.database}
+    _do:
+      call>: process/${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}

@@ -1,0 +1,16 @@
+timezone: Asia/Tokyo
+
+_export:
+  td:
+    database: mkdb_transaction
+    table: m_trade_history_migration
+
++create_tables:
+  td_ddl>:
+  database: ${td.database}
+  create_tables: ["${td.table}"]
+
++sbi_manual_sftp_td_mkdb_trade_history_migration_import:
+  td_load>: configs/m_trade_history.yml
+  database: ${td.database}
+  table: ${td.table}

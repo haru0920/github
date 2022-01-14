@@ -1,0 +1,24 @@
++judgment_loop_process_data_nest1:
+  if>: ${init.recovery_mode}
+  _do:
+    +call_mail_notice:
+      call>: ../../digs/mail_notice.dig
+
+    +loop_process_data_nest1:
+      _parallel: 
+        limit: ${process.loop_process_data.sub_parallel}
+      td_for_each>: ../../queries/get_control_recovery.sql
+      database: ${control.database}
+      _do:
+        +call_loop_process_data_nest1_sub:
+          call>: loop_process_data_task01_sub.dig
+  
+  _else_do:
+    +loop_process_data_nest1:
+      _parallel: 
+        limit: ${process.loop_process_data.sub_parallel}
+      td_for_each>: ../../queries/get_control.sql
+      database: ${control.database}
+      _do:
+        +call_loop_process_data_nest1_sub:
+          call>: loop_process_data_task01_sub.dig

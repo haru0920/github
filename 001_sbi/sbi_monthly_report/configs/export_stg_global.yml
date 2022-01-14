@@ -1,0 +1,46 @@
+# database settings
+database_name:
+  l0:
+    # ${database_name.l0.td_weblog}
+    td_weblog: td_weblog
+    # ${database_name.l0.mkdb_master}
+    mkdb_master: mkdb_master
+    # ${database_name.l0.mkdb_attribute}
+    mkdb_attribute: mkdb_attribute
+    # ${database_name.l0.mkdb_transaction}
+    mkdb_transaction: mkdb_transaction
+  # ${database_name.l1}
+  l1: incudata_test
+  # ${database_name.l2}
+  l2: incudata_test
+
+# control db settings
+control:
+  # control database name
+  database: incudata_test
+  # control table name
+  table: ${init.process_name}_control_stg
+
+# record process setting
+record_process:
+  # all process start end record true/false
+  mode: true
+  # loop get data process start end record true/false
+  sub_mode: true
+  # record database
+  database: incudata_test
+  # record table
+  table: ${init.process_name}_process_table_stg
+
+# mail settings
+mail:
+  # start mail settings
+  start_subject: "[START][STG]${init.process_name}"
+  # success mail settings
+  success_subject: "[SUCCESS][STG]${init.process_name}"
+  # error mail settings
+  error_subject: "[ERROR][STG]${init.process_name}"
+  # sla mail settings
+  sla_subject: "[SLA][STG]${init.process_name}"
+  # notice mail settings
+  notice_subject: "[NOTICE][STG]${init.process_name}"

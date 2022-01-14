@@ -1,0 +1,7 @@
++judgment_end_mail:
+  if>: ${init.mail.send_end}
+  _do:
+    +success_notice:
+      mail>: ../contents/mail_success_body.txt
+      subject: ${mail.success_subject}
+      to: [takaharu.okada@incudata.co.jp]

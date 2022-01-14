@@ -1,0 +1,33 @@
++loop_process_data_nest1:
+  _parallel: 
+    limit: ${process.loop_process_data.sub_parallel}
+  td_for_each>: ../../queries/get_control.sql
+  database: ${control.database}
+  _do:
+    +record_process_start:
+      _export:
+        tmp:
+          mode: ${process.record_process.sub_mode}
+          status: "START"
+          process_name_sub: "${td.each.out_table}"
+      +call_start_process:
+        call>: ../record_process.dig
+
+    +create_tables:
+      td_ddl>:
+      database: ${td.each.out_database}
+      create_tables: ["${td.each.out_table}"]
+
+    +get_data:
+      td_load>: ../../configs/td_load/bq_td_load_common.yml
+      database: ${td.each.out_database}
+      table: ${td.each.out_table}
+
+    +record_process_end:
+      _export:
+        tmp:
+          mode: ${process.record_process.sub_mode}
+          status: "END"
+          process_name_sub: "${td.each.out_table}"
+      +call_end_process:
+        call>: ../record_process.dig

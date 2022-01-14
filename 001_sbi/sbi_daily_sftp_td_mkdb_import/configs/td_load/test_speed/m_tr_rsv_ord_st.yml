@@ -1,0 +1,90 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}"
+  parser:
+    type: csv
+    delimiter: ,
+    quote: null
+    escape: null
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_month, type: string}
+    - {name: customer_id, type: string}
+    - {name: product_divition, type: string}
+    - {name: cancel_status, type: string}
+    - {name: cancel_date, type: string}
+    - {name: fund_code_num, type: string}
+    - {name: fund_code_ver, type: string}
+    - {name: association_code, type: string}
+    - {name: fund_legal_name, type: string}
+    - {name: trade_division, type: string}
+    - {name: monthly_set_price, type: string}
+    - {name: monthly_set_date, type: string}
+    - {name: bounus_set_price, type: string}
+    - {name: bounus_set_month_1, type: string}
+    - {name: bounus_set_day_1, type: string}
+    - {name: bounus_set_month_2, type: string}
+    - {name: bounus_set_day_2, type: string}
+    - {name: next_cource_division, type: string}
+    - {name: buy_in_next_date, type: string}
+    - {name: buy_in_next_price, type: string}
+    - {name: buy_in_due_date, type: string}
+    - {name: buy_in_due_date_bounus_1, type: string}
+    - {name: buy_in_due_date_bounus_2, type: string}
+    - {name: order_result_date, type: string}
+    - {name: order_result_error_code, type: string}
+    - {name: order_result_message, type: string}
+    - {name: base_date, type: string}
+    - {name: isa_order_kbn, type: string}
+    - {name: course_kbn, type: string}
+    - {name: setting_reserve_bimonthly, type: string}
+    - {name: setting_reserve_weekly, type: string}
+    - {name: setting_reserve_multiday, type: string}
+    - {name: nisa_barely_buying_kbn, type: string}
+    - {name: nisa_excess_buying_kbn, type: string}
+    - {name: rough_amount_m, type: string}
+    - {name: reception_route_kbn, type: string}
+
+################################
+### START footer common parts ##
+################################
+filters:
+- type: add_time
+  from_value:
+    mode: upload_time
+  to_column:
+    name: time
+
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

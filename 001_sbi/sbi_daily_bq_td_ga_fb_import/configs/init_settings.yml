@@ -1,0 +1,17 @@
+# process name
+process_name: sbi_daily_bq_td_ga_fb_import
+
+# pro or stg
+mode: pro
+
+# send mail mode true/false
+mail:
+
+  # start mail
+  send_start: false
+
+  # success mail
+  send_end: false
+
+  # sla mail
+  send_sla: false

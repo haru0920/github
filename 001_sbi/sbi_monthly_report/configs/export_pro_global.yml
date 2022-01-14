@@ -1,0 +1,46 @@
+# database settings
+database_name:
+  l0:
+    # ${database_name.l0.td_weblog}
+    td_weblog: td_weblog
+    # ${database_name.l0.mkdb_master}
+    mkdb_master: mkdb_master
+    # ${database_name.l0.mkdb_attribute}
+    mkdb_attribute: mkdb_attribute
+    # ${database_name.l0.mkdb_transaction}
+    mkdb_transaction: mkdb_transaction
+  # ${database_name.l1}
+  l1: l1_calculate_ph01
+  # ${database_name.l2}
+  l2: l2_bi_report
+
+# control db settings
+control:
+  # control database name
+  database: management_workflow
+  # control table name
+  table: ${init.process_name}_control_pro
+
+# record process setting
+record_process:
+  # all process start end record true/false
+  mode: true
+  # loop get data process start end record true/false
+  sub_mode: true
+  # record database
+  database: management_workflow
+  # record table
+  table: ${init.process_name}_process_table_pro
+
+# mail settings
+mail:
+  # start mail settings
+  start_subject: "[START][PRO]${init.process_name}"
+  # success mail settings
+  success_subject: "[SUCCESS][PRO]${init.process_name}"
+  # error mail settings
+  error_subject: "[ERROR][PRO]${init.process_name}"
+  # sla mail settings
+  sla_subject: "[SLA][PRO]${init.process_name}"
+  # notice mail settings
+  notice_subject: "[NOTICE][PRO]${init.process_name}"

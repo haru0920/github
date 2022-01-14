@@ -1,0 +1,7 @@
+﻿no,group1,group2,order_no,kubun,exe_digfile_name,col01,col02,col03,col04,col05,col06,col07,col08,col09,col10
+1,import01,import01_01,1,import,process_import_type01.dig,karte_td_load_common.yml,karte-data-95fca66c5122213a3a8dd15548835818,td_test/first_initsetting,incudata_test,first_initsetting,append,,,,
+2,,import01_01,2,import,process_import_type01.dig,karte_td_load_common.yml,karte-data-95fca66c5122213a3a8dd15548835818,td_test/first_goods_select,incudata_test,first_goods_select,append,,,,
+3,,import01_01,3,import,process_import_type01.dig,karte_td_load_common.yml,karte-data-95fca66c5122213a3a8dd15548835818,td_test/investment_stepup_domestic,incudata_test,investment_stepup_domestic,append,,,,
+4,,import01_01,4,import,process_import_type01.dig,karte_td_load_common.yml,karte-data-95fca66c5122213a3a8dd15548835818,td_test/investment_stepup_foreign,incudata_test,investment_stepup_foreign,append,,,,
+5,,import01_01,5,import,process_import_type01.dig,karte_td_load_common.yml,karte-data-95fca66c5122213a3a8dd15548835818,td_test/investment_upcross,incudata_test,investment_upcross,append,,,,
+6,,import01_01,6,import,process_import_type01.dig,karte_td_load_common.yml,karte-data-95fca66c5122213a3a8dd15548835818,td_test/domestic_otherservice,incudata_test,domestic_otherservice,append,,,,

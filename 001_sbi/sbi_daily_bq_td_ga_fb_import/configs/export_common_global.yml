@@ -1,0 +1,9 @@
+# process settings
+process:
+
+  # loop calculate data setting
+  loop_process_data:
+
+    # digs/calculate_data file list
+    task_list: 
+      - loop_process_data_task01.dig

@@ -1,0 +1,33 @@
++record_process_start:
+  _export:
+    tmp:
+      mode: ${init.record_process.sub_mode}
+      status: "START"
+      process_name_sub: "${td.each.col01}__${td.each.col07}"
+      cnt: "-"
+  +call_start_process:
+    call>: ../../common/record_process.dig
+
++process_export:
+  td>: ../../../queries/process/${td.each.col01}
+  database: ${td.each.col02}
+  engine: ${td.each.col04}
+  result_connection: ${td.each.col05}
+  result_settings:
+    spreadsheet_id: ${td.each.col06}
+    sheet_title: ${td.each.col07}
+    mode: truncate
+    range: A1
+    rows_threshold: 1000000
+    value_input_option: USER_ENTERED
+    set_nil_for_double_nan: true
+
++record_process_end:
+  _export:
+    tmp:
+      mode: ${init.record_process.sub_mode}
+      status: "${init.record_process.status.end}"
+      process_name_sub: "${td.each.col01}__${td.each.col07}"
+      cnt: "-"
+  +call_end_process:
+    call>: ../../common/record_process.dig
