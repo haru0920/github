@@ -1,4 +1,0 @@
-+mail_notice:
-  mail>: ../../contents/mail_notice_body.txt
-  subject: ${mail.notice_subject}
-  to: [takaharu.okada@incudata.co.jp]
