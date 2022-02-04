@@ -16,6 +16,6 @@ select
   , td_time_format(unix_timestamp(hanbai_kaishi_date_time_pc, 'yyyy/M/d H:mm'), 'yyyy-MM-dd HH:mm:ss') as hanbai_kaishi_date_time_pc
   , td_time_format(unix_timestamp(hanbai_shuryo_date_time_pc, 'yyyy/M/d H:mm'), 'yyyy-MM-dd HH:mm:ss') as hanbai_shuryo_date_time_pc
   , cast(kakaku_zeinuki as integer) as kakaku_zeinuki
-  , cast(kakaku_zeikomi as integer) as kakaku_zeikomi --
+  , cast(kakaku_zeikomi as integer) as kakaku_zeikomi
 from
   ${database_name.l0_non_all_hitmall}.hm_master_goods
