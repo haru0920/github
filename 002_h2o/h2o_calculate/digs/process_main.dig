@@ -1,0 +1,47 @@
+_error:
+  +call_mail_error:
+    call>: common/mail_error.dig
+
+  +call_error_process:
+    _export:
+      tmp:
+        mode: ${record_process.mode}
+        status: "${init.record_process.status.error}"
+        process_name_sub: "${init.record_process.name.common}"
+        cnt: "-"
+    call>: common/record_process.dig
+
++judgment_record_process_create_table:
+  if>: ${record_process.mode || record_process.sub_mode}
+  _do:
+    +create_tables_record_process:
+      td_ddl>:
+      database: ${record_process.database}
+      create_tables: ["${record_process.table}"]
+
++call_start_process:
+  _export:
+    tmp:
+      mode: ${record_process.mode}
+      status: "${init.record_process.status.start}"
+      process_name_sub: "${init.record_process.name.common}"
+      cnt: "-"
+  call>: common/record_process.dig
+
++call_mail_start:
+  call>: common/mail_start.dig
+
++call_loop_process:
+  call>: loop_process/loop_process_nest0.dig
+
++call_mail_success:
+  call>: common/mail_success.dig
+
++call_end_process:
+  _export:
+    tmp:
+      mode: ${record_process.mode}
+      status: "${init.record_process.status.end}"
+      process_name_sub: "${init.record_process.name.common}"
+      cnt: "-"
+  call>: common/record_process.dig
