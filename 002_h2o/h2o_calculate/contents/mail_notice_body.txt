@@ -1,6 +1,0 @@
-project_id: ${project_id}
-session_id: ${session_id}
-attempt_id: ${attempt_id}
-session_time: ${session_time}
-task_name: ${task_name}
-recovery_mode: ${init.recovery_mode}
