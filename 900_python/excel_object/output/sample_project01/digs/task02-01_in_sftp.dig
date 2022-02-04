@@ -1,0 +1,4 @@
++load_step:
+  td_load>: ../configs/task02-01_in_sftp.yml 
+  database: 
+  table: 

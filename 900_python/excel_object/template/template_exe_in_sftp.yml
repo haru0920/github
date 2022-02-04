@@ -1,0 +1,24 @@
+in:
+  type: sftp
+  host: 
+  port: 
+  user: 
+  secret_key_file: 
+  secret_key_passphrase: 
+  user_directory_is_root: 
+  timeout: 
+  path_prefix: 
+  parser:
+    charset: 
+    newline: 
+    type: 
+    delimiter: 
+    quote: 
+    escape: 
+    trim_if_not_quoted: false
+    skip_header_lines: 
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - {name: , type: }
+out: {}

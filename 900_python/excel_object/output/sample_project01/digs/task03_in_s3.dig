@@ -1,0 +1,4 @@
++load_s3:
+  td_load>: ../configs/task03_in_s3.yml 
+  database: 
+  table: 
