@@ -1,0 +1,17 @@
+in:
+  type: 
+  access_key_id: 
+  secret_access_key: 
+  bucket: 
+  path_prefix: 
+  parser:
+    charset: 
+    newline: 
+    type: 
+    skip_header_lines: 
+    columns:
+    - name: 
+      type: 
+out: {}
+exec: {}
+filters: []

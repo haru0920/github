@@ -1,0 +1,5 @@
+-- {taskname}
+select
+  *
+from
+  test

@@ -1,0 +1,5 @@
+kubun,type,exe_filename,exe_dir,exe_setting_sheet,dig_filename,desc
+process,query,template_exe_query.sql,queries,,template_dig_query.dig,SQL RUN
+process,in_sftp,template_exe_in_sftp.yml,configs,template_exe_in_sftp,template_dig_in_sftp.dig,import SFTP
+process,in_s3,template_exe_in_s3.yml,configs,template_exe_in_s3,template_dig_in_s3.dig,import S3
+loop,td_for_each,template_exe_query.sql,queries,,template_dig_td_for_each.dig,

@@ -1,0 +1,23 @@
+# テスト用処理01
++task01:
+  call>: digs/task01_query.dig
+
+# ○○の比較
++judge01:
+  if>: 
+  _do:
+
+    # テスト用処理02-01
+    +task02-01:
+      call>: digs/task02-01_in_sftp.dig
+
+# ○○回ループ
++loop01:
+  td_for_each>: queries/loop01_td_for_each.sql
+    _parallel: 
+      limit: 
+
+    # テスト用処理03
+    +task03:
+      call>: digs/task03_in_s3.dig
+

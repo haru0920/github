@@ -1,0 +1,7 @@
++judgment_record_process:
+  if>: ${tmp.mode}
+  _do:
+    +record_process:
+      td>: ../../queries/common/record_process_put_data.sql
+      database: ${record_process.database}
+      insert_into: ${record_process.table}
