@@ -73,7 +73,7 @@ select
   , t1.query_ggcd
 from
   tt001 as t1
-  left join ${database_name.1_non_all_hitmall}.hm_master_category_brand as t2 on t1.query_cid = t2.category_id
+  left join ${database_name.l1_non_all_hitmall}.hm_master_category_brand as t2 on t1.query_cid = t2.category_id
   left join tt002 as t3 on t1.query_cid = t3.category_id
   left join tt003 as t4 on t1.query_cid = t4.category_id
   left join tt004 as t5 on t1.query_cid = t5.category_id
