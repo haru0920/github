@@ -1,0 +1,40 @@
+# database settings
+database_name:
+  l0_pd_all_cdc: dev_incudata
+  l0_non_all_hitmall: dev_incudata
+  l0_non_all_bdash: dev_incudata
+  l0_pd_all_cuenote: dev_incudata
+  l1_pd_all_cdc: dev_incudata
+  l1_non_all_hitmall: dev_incudata
+  l1_non_all_bdash: dev_incudata
+
+# control db settings
+control:
+  # control database name
+  database: dev_incudata
+  # control table name
+  table: ${init.process_name}_control_stg
+
+# record process setting
+record_process:
+  # all process start end record true/false
+  mode: true
+  # loop get data process start end record true/false
+  sub_mode: true
+  # record database
+  database: dev_incudata
+  # record table
+  table: ${init.process_name}_process_table_stg
+
+# mail settings
+mail:
+  # start mail settings
+  start_subject: "[START][STG]${init.process_name}"
+  # success mail settings
+  success_subject: "[SUCCESS][STG]${init.process_name}"
+  # error mail settings
+  error_subject: "[ERROR][STG]${init.process_name}"
+  # sla mail settings
+  sla_subject: "[SLA][STG]${init.process_name}"
+  # notice mail settings
+  notice_subject: "[NOTICE][STG]${init.process_name}"

@@ -1,4 +1,4 @@
 +mail_error:
   mail>: ../../contents/mail_error_body.txt
   subject: ${mail.error_subject}
-  to: [takaharu.okada@incudata.co.jp]
+  to: [takaharu.okada@incudata.co.jp,eriko.sugimura@incudata.co.jp]

@@ -35,3 +35,23 @@
     database: ${control.database}
     _do:
       call>: ${td.each.exe_digfile_name.split("/")[tmp.hierarchy].split("_")[0]=="process" ? "process/":""}${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
+#+judgment_loop_process_sql03:
+#  _export:
+#    group:
+#      group1: ""
+#      group2: "group2 = 'sql03_01'"
+#      group3: ""
+#    tmp:
+#      parallel: 0
+#      hierarchy: 0
+#
+#  +loop_process_sql03:
+#    _parallel: 
+#      limit: ${tmp.parallel}
+#    
+#    td_for_each>: ../../queries/common/get_control.sql
+#    database: ${control.database}
+#    _do:
+#      call>: ${td.each.exe_digfile_name.split("/")[tmp.hierarchy].split("_")[0]=="process" ? "process/":""}${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
+
