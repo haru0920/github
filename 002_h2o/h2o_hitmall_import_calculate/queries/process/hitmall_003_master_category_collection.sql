@@ -8,4 +8,6 @@ select
 from
   ${database_name.l0_non_all_hitmall}.hm_master_category
 where
-  site_name = 'BEAUTY' and category_id rlike '^b_bbs_(?!.*(ccnl|hhrm|kdcr|pdio|scpb))[a-z0-9]*_[a-z0-9]*' 
+  t1.time in (select max(time) from ${database_name.l0_non_all_hitmall}.hm_master_category)
+  and site_name = 'BEAUTY'
+  and category_id rlike '^b_bbs_(?!.*(ccnl|hhrm|kdcr|pdio|scpb))[a-z0-9]*_[a-z0-9]*' 

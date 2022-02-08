@@ -18,4 +18,6 @@ select
   , cast(kakaku_zeinuki as int) as kakaku_zeinuki
   , cast(kakaku_zeikomi as int) as kakaku_zeikomi
 from
-  ${database_name.l0_non_all_hitmall}.hm_master_goods
+  ${database_name.l0_non_all_hitmall}.hm_master_goods as t1
+where
+  t1.time in (select max(time) from ${database_name.l0_non_all_hitmall}.hm_master_goods)
