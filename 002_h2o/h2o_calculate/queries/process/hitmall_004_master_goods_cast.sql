@@ -15,7 +15,12 @@ select
   , td_time_format(unix_timestamp(koukai_shuryo_date_time_pc, 'yyyy/M/d H:mm'), 'yyyy-MM-dd HH:mm:ss') as koukai_shuryo_date_time_pc
   , td_time_format(unix_timestamp(hanbai_kaishi_date_time_pc, 'yyyy/M/d H:mm'), 'yyyy-MM-dd HH:mm:ss') as hanbai_kaishi_date_time_pc
   , td_time_format(unix_timestamp(hanbai_shuryo_date_time_pc, 'yyyy/M/d H:mm'), 'yyyy-MM-dd HH:mm:ss') as hanbai_shuryo_date_time_pc
+<<<<<<< HEAD
   , cast(kakaku_zeinuki as int) as kakaku_zeinuki
   , cast(kakaku_zeikomi as int) as kakaku_zeikomi
+=======
+  , cast(kakaku_zeinuki as integer) as kakaku_zeinuki
+  , cast(kakaku_zeikomi as integer) as kakaku_zeikomi
+>>>>>>> 59f3b06cd29a7d23bbb91b350567b585d1e85403
 from
   ${database_name.l0_non_all_hitmall}.hm_master_goods

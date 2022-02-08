@@ -3,7 +3,11 @@
 # col02：出力先データベース名(必須)
 # col03：出力先テーブル名(必須)
 # col04：実行エンジンpresto/hive(必須)
+<<<<<<< HEAD
 # col05：実行エンジンバージョン指定(任意、なければnull)
+=======
+# col05：任意フィールド
+>>>>>>> 59f3b06cd29a7d23bbb91b350567b585d1e85403
 # col06：任意フィールド
 # col07：任意フィールド
 # col08：任意フィールド
@@ -29,7 +33,10 @@
   td>: ../../../queries/process/${td.each.col01}
   database: ${td.each.col02}
   engine: ${td.each.col04}
+<<<<<<< HEAD
   engine_version: "${td.each.col05}"
+=======
+>>>>>>> 59f3b06cd29a7d23bbb91b350567b585d1e85403
 
 +get_count:
   _export:
