@@ -15,7 +15,6 @@
     td_for_each>: ../../queries/common/get_control.sql
     database: ${control.database}
     _do:
-<<<<<<< HEAD
       call>: ${td.each.exe_digfile_name.split("/")[tmp.hierarchy].split("_")[0]=="process" ? "process/":""}${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
 
 +judgment_loop_process_sql02:
@@ -56,6 +55,3 @@
 #    _do:
 #      call>: ${td.each.exe_digfile_name.split("/")[tmp.hierarchy].split("_")[0]=="process" ? "process/":""}${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
 
-=======
-      call>: ${td.each.exe_digfile_name.split("/")[tmp.hierarchy].split("_")[0]=="process" ? "process/":""}${td.each.exe_digfile_name.split("/")[tmp.hierarchy]}
->>>>>>> 59f3b06cd29a7d23bbb91b350567b585d1e85403

@@ -1,7 +1,0 @@
-+judgment_mail_start:
-  if>: ${init.mail.send_start}
-  _do:
-    +mail_start:
-      mail>: ../../contents/mail_start_body.txt
-      subject: ${mail.start_subject}
-      to: [takaharu.okada@incudata.co.jp]

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿no,group1,group2,group3,order_no,kubun,exe_digfile_name,comment,col01,col02,col03,col04,col05,col06,col07,col08,col09,col10
 1,sql01,sql01_01,,1,sql,process_sql_type03.dig,hm_master_category_brandの作成,hitmall_001_master_category_brand.sql,l1_non_all_hitmall,hm_master_category_brand,hive,stable,,,,,
 2,,sql01_01,,2,sql,process_sql_type03.dig,hm_master_category_itemの作成,hitmall_002_master_category_item.sql,l1_non_all_hitmall,hm_master_category_item,hive,stable,,,,,
@@ -6,10 +5,3 @@
 4,,sql01_01,,4,sql,process_sql_type03.dig,hm_master_goods_castの作成,hitmall_004_master_goods_cast.sql,l1_non_all_hitmall,hm_master_goods_cast,hive,stable,,,,,
 5,,sql01_01,,5,sql,process_sql_type03.dig,cdc_id_masterの作成,cdc_002_id_master.sql,l1_pd_all_cdc,cdc_id_master,hive,stable,,,,,
 6,sql02,sql02_01,,1,sql,process_sql_type02.dig,bd_access_log_add_categoryの作成,bdash_001_access_log_mapping.sql,l1_non_all_bdash,bd_access_log_add_category,hive,stable,,,,,
-=======
-﻿no,group1,group2,group3,order_no,kubun,exe_digfile_name,comment,col01,col02,col03,col04,col05,col06,col07,col08,col09,col10
-1,sql01,sql01_01,,1,sql,process_sql_type03.dig,hm_master_category_brandの作成,hitmall_001_master_category_brand.sql,l1_non_all_hitmall,hm_master_category_brand,hive,,,,,,
-2,,sql01_01,,2,sql,process_sql_type03.dig,hm_master_category_itemの作成,hitmall_002_master_category_item.sql,l1_non_all_hitmall,hm_master_category_item,hive,,,,,,
-3,,sql01_01,,3,sql,process_sql_type03.dig,hm_master_category_collectionの作成,hitmall_003_master_category_collection.sql,l1_non_all_hitmall,hm_master_category_collection,hive,,,,,,
-4,,sql01_01,,4,sql,process_sql_type03.dig,hm_master_goods_castの作成,hitmall_004_master_goods_cast.sql,l1_non_all_hitmall,hm_master_goods_cast,hive,,,,,,
->>>>>>> 59f3b06cd29a7d23bbb91b350567b585d1e85403

@@ -1,17 +1,17 @@
 # database settings
 database_name:
-  l0_pd_all_cdc: dev_incudata
-  l0_non_all_hitmall: dev_incudata
-  l0_non_all_bdash: dev_incudata
-  l0_pd_all_cuenote: dev_incudata
-  l1_pd_all_cdc: dev_incudata
-  l1_non_all_hitmall: dev_incudata
-  l1_non_all_bdash: dev_incudata
+  l0_pd_all_cdc: dev_h2o
+  l0_non_all_hitmall: dev_h2o
+  l0_non_all_bdash: dev_h2o
+  l0_pd_all_cuenote: dev_h2o
+  l1_pd_all_cdc: dev_h2o
+  l1_non_all_hitmall: dev_h2o
+  l1_non_all_bdash: dev_h2o
 
 # control db settings
 control:
   # control database name
-  database: dev_incudata
+  database: dev_h2o
   # control table name
   table: ${init.process_name}_control_stg
 
@@ -22,7 +22,7 @@ record_process:
   # loop get data process start end record true/false
   sub_mode: true
   # record database
-  database: dev_incudata
+  database: dev_h2o
   # record table
   table: ${init.process_name}_process_table_stg
 
