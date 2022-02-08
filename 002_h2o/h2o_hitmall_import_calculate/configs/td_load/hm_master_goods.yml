@@ -1,0 +1,67 @@
+in:
+  type: s3
+  access_key_id: ${secret:aws.s3.access_key_id}
+  secret_access_key: ${secret:aws.s3.secret_access_key}
+  bucket: ${td.each.col05}
+  path_prefix: ${td.each.col06}
+  path_match_pattern: ${s3.path_match_pattern}
+  decoders: []
+  parser:
+    type: ${s3.parser.type}
+    delimiter: ${s3.parser.delimiter}
+    quote: ${s3.parser.quote}
+    escape: ${s3.parser.escape}
+    skip_header_lines: ${s3.parser.skip_header_lines}
+    null_string: ${s3.parser.null_string}
+    newline: ${s3.parser.newline}
+    charset: ${s3.parser.charset}
+    trim_if_not_quoted: ${s3.parser.trim_if_not_quoted}
+    max_quoted_size_limit: ${s3.parser.max_quoted_size_limit}
+    default_timezone: ${s3.parser.default_timezone}
+    allow_optional_columns: ${s3.parser.allow_optional_columns}
+    allow_extra_columns: ${s3.parser.allow_extra_columns}
+    stop_on_invalid_record: ${s3.parser.stop_on_invalid_record}
+    columns:
+    - name: site_name
+      type: string
+    - name: shouhin_name
+      type: string
+    - name: shouhin_kanri_no
+      type: string
+    - name: shouhin_no
+      type: string
+    - name: shop_name
+      type: string
+    - name: brand_name
+      type: string
+    - name: item_category_name_1
+      type: string
+    - name: item_category_name_2
+      type: string
+    - name: item_category_name_3
+      type: string
+    - name: koukai_kaishi_date_time_pc
+      type: string
+    - name: koukai_shuryo_date_time_pc
+      type: string
+    - name: hanbai_kaishi_date_time_pc
+      type: string
+    - name: hanbai_shuryo_date_time_pc
+      type: string
+    - name: kakaku_zeinuki
+      type: string
+    - name: kakaku_zeikomi
+      type: string
+
+filters:
+- type: add_time
+  to_column:
+    name: time
+    type: timestamp
+  from_value:
+    value: ${session_unixtime}
+
+out:
+  type: td
+  mode: ${td.each.col04}
+  time_column: time
