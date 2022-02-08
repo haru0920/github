@@ -1,4 +1,4 @@
-insert into ${database_name.l1_non_all_bdash}.bd_access_log_add_category
+insert into ${database_name.l1_non_all_bdash}.bd_access_log_add_category --
 
 -- presto
 -- id_masterと突合しuidを取得
