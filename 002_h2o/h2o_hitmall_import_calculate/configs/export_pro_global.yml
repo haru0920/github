@@ -8,6 +8,11 @@ database_name:
   l1_non_all_hitmall: l1_non_all_hitmall
   l1_non_all_bdash: l1_non_all_bdash
 
+# s3 connection
+s3:
+  access_key_id: ${secret:pro.aws.s3.access_key_id}
+  secret_access_key: ${secret:pro.aws.s3.secret_access_key}
+
 # control db settings
 control:
   # control database name
