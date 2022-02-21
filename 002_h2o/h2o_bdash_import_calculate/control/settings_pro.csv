@@ -2,4 +2,4 @@
 1,import01,import01_01,,1,import,process_in_s3_type01.dig,s3からbd_access_logを取得,bd_access_log.yml,l0_non_all_bdash,bd_access_log,append,DEV-TD-OUT,hogehoge,,,,
 2,import02,import02_01,,1,import,process_in_s3_type01.dig,s3からbd_aggregate_latest_accessを取得,bd_aggregate_latest_access.yml,l0_non_all_bdash,bd_aggregate_latest_access,append,DEV-TD-OUT,hogehoge,,,,
 3,,import02_01,,2,import,process_in_s3_type01.dig,s3からbd_aggregate_summary_per_6month_urlを取得,bd_aggregate_summary_per_6month_url.yml,l0_non_all_bdash,bd_aggregate_summary_per_6month_url,append,DEV-TD-OUT,hogehoge,,,,
-4,sql01,sql01_01,,1,sql,process_sql_type03.dig,bd_access_log_add_categoryの作成,bdash_001_access_log_mapping.sql,l1_non_all_bdash,bd_access_log_add_category,hive,stable,,,,,
+4,sql01,sql01_01,,1,sql,process_sql_type02.dig,bd_access_log_add_categoryの作成,bdash_001_access_log_mapping.sql,l1_non_all_bdash,bd_access_log_add_category,hive,stable,,,,,
