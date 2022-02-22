@@ -23,7 +23,8 @@ with tt001 as(
 -- パーシング処理後のマスターとのマッピング処理
 tt101 as(
   select
-      t1.kaiin_seq
+      t1.time
+    , t1.kaiin_seq
     , t1.ymd
     , t1.page_url
     , t1.page_title
@@ -52,7 +53,8 @@ tt101 as(
 
 tt102 as(
   select
-      max(kaiin_seq) as kaiin_seq
+      max(time) as time
+    , max(kaiin_seq) as kaiin_seq
     , max(ymd) as ymd
     , max(page_url) as page_url
     , max(page_title) as page_title
@@ -74,7 +76,8 @@ tt102 as(
 
 insert overwrite table ${database_name.l1_non_all_bdash}.bd_access_log_add_category
 select
-    kaiin_seq
+    time
+  , kaiin_seq
   , ymd
   , page_url
   , page_title
