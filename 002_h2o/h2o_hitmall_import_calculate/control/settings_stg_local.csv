@@ -1,0 +1,4 @@
+﻿no,group1,group2,group3,order_no,kubun,exe_digfile_name,comment,col01,col02,col03,col04,col05,col06,col07,col08,col09,col10
+1,import01,import01_01,,1,import,process_in_s3_type01.dig,s3からhm_master_categoryを取得,hm_master_category.yml,dev_h2o,hm_master_category,append,DEV-TD-OUT,hogehoge,,,,
+2,import02,import02_01,,1,import,process_in_s3_type01.dig,s3からhm_master_goodsを取得,hm_master_goods.yml,dev_h2o,hm_master_goods,append,DEV-TD-OUT,hogehoge,,,,
+3,sql01,sql01_01,,1,sql,process_sql_type03.dig,hm_master_category_add_parameterの作成,hitmall_001_master_category_add_parameter.sql,dev_h2o,hm_master_category_add_parameter,hive,stable,,,,,
