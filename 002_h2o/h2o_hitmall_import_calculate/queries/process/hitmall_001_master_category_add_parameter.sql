@@ -107,7 +107,7 @@ tt106 as(
     , cast(null as string) as category_name_pc_collection
   from
     tt104 as t1
-    left join tt101 as t2 on t1.category_id like concat(t2.category_id, '%')
+    left join tt105 as t2 on t1.category_id like concat(t2.category_id, '%')
 ),
 
 -- master_categoryからアイテムカテゴリ名のマスタを作成
