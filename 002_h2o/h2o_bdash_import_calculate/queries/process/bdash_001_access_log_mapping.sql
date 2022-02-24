@@ -47,6 +47,8 @@ tt101 as(
     left join ${database_name.l1_non_all_hitmall}.hm_master_category_add_parameter as t4 on t1.page_url like concat('%', t4.category_id, '%')
 ),
 
+-- レコードのユニーク処理
+-- max：どのレコードを採用しても同じ場合に使用、case：longest match(td_last)を優先、左記がNULLの場合はmaxを使用　←　like joinをしているため必要
 tt102 as(
   select
       max(time) as time

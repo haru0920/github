@@ -2,11 +2,11 @@ s3:
   path_match_pattern: _${moment(session_time).format("YYYYMMDD")}.csv$
   parser:
     type: csv
-    delimiter: "\",\""
-    quote: "\"\\\"\""
-    escape: "\"\\\"\""
-    skip_header_lines: 1
-    null_string: "\"\""
+    delimiter: "\",\""    # ","　カンマ
+    quote: "\"\\\"\""     # "\""　ダブルコーテーション
+    escape: "\"\\\""      # "\"　バックスラッシュ
+    skip_header_lines: 0  
+    null_string: "\"\""   # ""  空白文字列
     newline: CRLF
     charset: UTF-8
     trim_if_not_quoted: false
