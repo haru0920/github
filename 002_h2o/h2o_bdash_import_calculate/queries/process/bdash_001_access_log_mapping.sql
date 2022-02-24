@@ -28,27 +28,23 @@ tt101 as(
     , t1.ymd
     , t1.page_url
     , t1.page_title
-    , coalesce(t2.category_name_pc_brand, t4.brand_name, t5.category_name_pc_brand) as brand_name
-    , t4.shouhin_name as shouhin_name
-    , coalesce(t3.category_name_pc_item_1, t4.item_category_name_1, t6.category_name_pc_item_1) as item_category_name_1
-    , coalesce(t3.category_name_pc_item_2, t4.item_category_name_2, t6.category_name_pc_item_2) as item_category_name_2
-    , coalesce(t3.category_name_pc_item_3, t4.item_category_name_3, t6.category_name_pc_item_3) as item_category_name_3
+    , coalesce(t2.category_name_pc_brand, t3.brand_name, t4.category_name_pc_brand) as brand_name
+    , t3.shouhin_name as shouhin_name
+    , coalesce(t2.category_name_pc_item_1, t3.item_category_name_1, t4.category_name_pc_item_1) as item_category_name_1
+    , coalesce(t2.category_name_pc_item_2, t3.item_category_name_2, t4.category_name_pc_item_2) as item_category_name_2
+    , coalesce(t2.category_name_pc_item_3, t3.item_category_name_3, t4.category_name_pc_item_3) as item_category_name_3
     , t1.uid
     , t1.query_array
     , t1.query_cid
     , t1.query_ggcd
     , row_number
-    , length(t5.category_id) as len_brand
-    , length(t6.category_id) as len_item
+    , length(t4.category_id) as match_length
   from
     tt001 as t1
-    left join ${database_name.l1_non_all_hitmall}.hm_master_category_brand as t2 on t1.query_cid = t2.category_id
-    left join ${database_name.l1_non_all_hitmall}.hm_master_category_item as t3 on t1.query_cid = t3.category_id
-    left join ${database_name.l1_non_all_hitmall}.hm_master_goods_cast as t4 on t1.query_ggcd = t4.shouhin_kanri_no
-    -- left join ${database_name.l1_non_all_hitmall}.hm_master_category_brand as t5 on array_contains(t1.query_array, t5.category_id)
-    left join ${database_name.l1_non_all_hitmall}.hm_master_category_brand as t5 on t1.page_url like concat('%', t5.category_id, '%')
-    -- left join ${database_name.l1_non_all_hitmall}.hm_master_category_item as t6 on array_contains(t1.query_array, t6.category_id)
-    left join ${database_name.l1_non_all_hitmall}.hm_master_category_item as t6 on t1.page_url like concat('%', t6.category_id, '%')
+    left join ${database_name.l1_non_all_hitmall}.hm_master_category_add_parameter as t2 on t1.query_cid = t2.category_id
+    left join ${database_name.l1_non_all_hitmall}.hm_master_goods_cast as t3 on t1.query_ggcd = t3.shouhin_kanri_no
+    -- left join ${database_name.l1_non_all_hitmall}.hm_master_category_add_parameter as t4 on array_contains(t1.query_array, t4.category_id)
+    left join ${database_name.l1_non_all_hitmall}.hm_master_category_add_parameter as t4 on t1.page_url like concat('%', t4.category_id, '%')
 ),
 
 tt102 as(
@@ -58,11 +54,23 @@ tt102 as(
     , max(ymd) as ymd
     , max(page_url) as page_url
     , max(page_title) as page_title
-    , td_last(brand_name, len_brand) as brand_name
+    , case
+        when td_last(brand_name, match_length) is not null then td_last(brand_name, match_length)
+        else max(brand_name)
+      end as brand_name
     , max(shouhin_name) as shouhin_name
-    , td_last(item_category_name_1, len_item) as item_category_name_1
-    , td_last(item_category_name_2, len_item) as item_category_name_2
-    , td_last(item_category_name_3, len_item) as item_category_name_3
+    , case
+        when td_last(item_category_name_1, match_length) is not null then td_last(item_category_name_1, match_length)
+        else max(item_category_name_1)
+      end as item_category_name_1
+    , case
+        when td_last(item_category_name_2, match_length) is not null then td_last(item_category_name_2, match_length)
+        else max(item_category_name_2)
+      end as item_category_name_2
+    , case
+        when td_last(item_category_name_3, match_length) is not null then td_last(item_category_name_3, match_length)
+        else max(item_category_name_3)
+      end as item_category_name_3
     , max(uid) as uid
     , max(query_array) as query_array
     , max(query_cid) as query_cid
@@ -74,7 +82,7 @@ tt102 as(
     row_number
 )
 
-insert overwrite table ${database_name.l1_non_all_bdash}.bd_access_log_add_category
+insert overwrite table ${database_name.l1_non_all_bdash}.${td.each.col03}
 select
     time
   , kaiin_seq
