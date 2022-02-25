@@ -3,9 +3,9 @@ s3:
   parser:
     type: csv
     delimiter: "\",\""    # ","　カンマ
-    quote: "\"\\\"\""     # "\""　ダブルコーテーション
+    quote: null
     escape: "\"\\\""      # "\"　バックスラッシュ
-    skip_header_lines: 0  
+    skip_header_lines: 0
     null_string: "\"\""   # ""  空白文字列
     newline: CRLF
     charset: UTF-8

@@ -4,10 +4,14 @@
 with tt001 as(
   select
       td_time_parse(t1.ymd, 'JST') as time
+    , t1.visitor_id
     , t1.kaiin_seq
     , t1.ymd
+    , t1.device_category
+    , t1.browser
     , t1.page_url
     , t1.page_title
+    , t1.action_type
     , t2.uid
     , split(regexp_replace(parse_url(t1.page_url, 'QUERY'), '[^&][A-Za-z0-9]*=', ''), '&') as query_array
     , parse_url(t1.page_url, 'QUERY', 'cid') as query_cid
@@ -24,10 +28,14 @@ with tt001 as(
 tt101 as(
   select
       t1.time
+    , t1.visitor_id
     , t1.kaiin_seq
     , t1.ymd
+    , t1.device_category
+    , t1.browser
     , t1.page_url
     , t1.page_title
+    , t1.action_type
     , coalesce(t2.category_name_pc_brand, t3.brand_name, t4.category_name_pc_brand) as brand_name
     , t3.shouhin_name as shouhin_name
     , coalesce(t2.category_name_pc_item_1, t3.item_category_name_1, t4.category_name_pc_item_1) as item_category_name_1
@@ -52,10 +60,14 @@ tt101 as(
 tt102 as(
   select
       max(time) as time
+    , max(visitor_id) as visitor_id
     , max(kaiin_seq) as kaiin_seq
     , max(ymd) as ymd
+    , max(device_category) as device_category
+    , max(browser) as browser
     , max(page_url) as page_url
     , max(page_title) as page_title
+    , max(action_type) as action_type
     , case
         when td_last(brand_name, match_length) is not null then td_last(brand_name, match_length)
         else max(brand_name)
@@ -87,10 +99,14 @@ tt102 as(
 insert overwrite table ${database_name.l1_non_all_bdash}.${td.each.col03}
 select
     time
+  , visitor_id
   , kaiin_seq
   , ymd
+  , device_category
+  , browser
   , page_url
   , page_title
+  , action_type
   , brand_name
   , shouhin_name
   , item_category_name_1

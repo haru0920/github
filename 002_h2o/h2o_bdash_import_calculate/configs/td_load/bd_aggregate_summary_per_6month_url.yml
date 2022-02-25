@@ -22,24 +22,15 @@ in:
     allow_extra_columns: ${s3.parser.allow_extra_columns}
     stop_on_invalid_record: ${s3.parser.stop_on_invalid_record}
     columns:
-    - name: kaiin_seq
-      type: string
-    - name: ym
-      type: string
-    - name: page_url
-      type: string
-    - name: page_title
-      type: string
-    - name: page_view_kaisu
-      type: string
-    - name: page_stay_totaltime
-      type: string
-    - name: page_stay_maxtime
-      type: string
-    - name: page_stay_mintime
-      type: string
-    - name: page_stay_avgtime
-      type: string
+    - {name: kaiin_seq, type: string}
+    - {name: ym, type: string}
+    - {name: page_url, type: string}
+    - {name: page_title, type: string}
+    - {name: page_view_kaisu, type: string}
+    - {name: page_stay_totaltime, type: string}
+    - {name: page_stay_maxtime, type: string}
+    - {name: page_stay_mintime, type: string}
+    - {name: page_stay_avgtime, type: string}
 
 filters:
 - type: add_time

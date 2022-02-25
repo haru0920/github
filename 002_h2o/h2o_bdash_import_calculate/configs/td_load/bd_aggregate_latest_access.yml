@@ -22,12 +22,9 @@ in:
     allow_extra_columns: ${s3.parser.allow_extra_columns}
     stop_on_invalid_record: ${s3.parser.stop_on_invalid_record}
     columns:
-    - name: kaiin_seq
-      type: string
-    - name: saishin_houmon_date_time
-      type: string
-    - name: saishin_shouhinetsuran_date_time
-      type: string
+    - {name: kaiin_seq, type: string}
+    - {name: saishin_houmon_date_time, type: string}
+    - {name: saishin_shouhinetsuran_date_time, type: string}
 
 filters:
 - type: add_time

@@ -9,7 +9,7 @@ in:
   parser:
     type: ${s3.parser.type}
     delimiter: ${s3.parser.delimiter}
-    quote: ${s3.parser.quote}
+    quote:  "\""
     escape: ${s3.parser.escape}
     skip_header_lines: ${s3.parser.skip_header_lines}
     null_string: ${s3.parser.null_string}
@@ -22,14 +22,14 @@ in:
     allow_extra_columns: ${s3.parser.allow_extra_columns}
     stop_on_invalid_record: ${s3.parser.stop_on_invalid_record}
     columns:
-    - name: kaiin_seq
-      type: string
-    - name: ymd
-      type: string
-    - name: page_url  
-      type: string
-    - name: page_title
-      type: string
+    - {name: visitor_id, type: string}
+    - {name: kaiin_seq, type: string}
+    - {name: ymd, type: string}
+    - {name: device_category, type: string}
+    - {name: browser, type: string}
+    - {name: page_url, type: string}
+    - {name: page_title, type: string}
+    - {name: action_type, type: string}
 
 filters:
 - type: add_time
