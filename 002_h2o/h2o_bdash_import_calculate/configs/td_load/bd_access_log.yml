@@ -43,3 +43,4 @@ out:
   type: td
   mode: ${td.each.col04}
   time_column: time
+  
