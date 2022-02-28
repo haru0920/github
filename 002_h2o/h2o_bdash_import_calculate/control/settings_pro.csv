@@ -3,3 +3,5 @@
 2,import02,import02_01,,1,import,process_in_s3_type01.dig,s3からbd_aggregate_latest_accessを取得,bd_aggregate_latest_access.yml,l0_non_all_bdash,bd_aggregate_latest_access,append,h2o-dev-td-out,b-dash/bd_aggregate_latest_access,,,,
 3,,import02_01,,2,import,process_in_s3_type01.dig,s3からbd_aggregate_summary_per_6month_urlを取得,bd_aggregate_summary_per_6month_url.yml,l0_non_all_bdash,bd_aggregate_summary_per_6month_url,append,h2o-dev-td-out,b-dash/bd_aggregate_summary_per_6month_url,,,,
 4,sql01,sql01_01,,1,sql,process_sql_type02.dig,bd_access_log_add_categoryの作成,bdash_001_access_log_mapping.sql,l1_non_all_bdash,bd_access_log_add_category,hive,stable,,,,,
+5,,sql01_01,,2,sql,process_sql_type03.dig,bd_aggregate_latest_access_add_uidの作成,bdash_002_aggregate_latest_access_add_uid.sql,l1_non_all_bdash,bd_aggregate_latest_access_add_uid,hive,stable,,,,,
+6,,sql01_01,,3,sql,process_sql_type03.dig,bd_aggregate_summary_per_6month_url_add_uidの作成,bdash_003_aggregate_summary_per_6month_url_add_uid.sql,l1_non_all_bdash,bd_aggregate_summary_per_6month_url_add_uid,hive,stable,,,,,

@@ -96,7 +96,7 @@ tt102 as(
     row_number
 )
 
-insert overwrite table ${database_name.l1_non_all_bdash}.${td.each.col03}
+insert into table ${database_name.l1_non_all_bdash}.${td.each.col03}
 select
     time
   , visitor_id
