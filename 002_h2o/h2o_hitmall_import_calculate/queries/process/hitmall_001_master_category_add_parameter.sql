@@ -145,6 +145,8 @@ tt301 as(
     ${database_name.l0_non_all_hitmall}.hm_master_category as t1
   where
     t1.time in (select max(time) from ${database_name.l0_non_all_hitmall}.hm_master_category)
+    -- 取込データのノイズ対応
+    and category_id not in ('top')
 )
 
 -- 分割したマスタを統合
