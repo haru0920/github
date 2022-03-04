@@ -3,6 +3,17 @@
 -- @TD enable_cartesian_product:true
 with tt001 as(
   select
+      min(uid) as uid
+    , member_seq
+  from
+    ${database_name.l1_pd_all_cdc}.cdc_id_master
+    lateral view explode(member_seq_array) t as member_seq
+  group by
+    member_seq
+),
+
+tt002 as(
+  select
       t1.kaiin_seq
     , t1.ym
     , split(t1.ym, '[年月-]') datemonth
@@ -16,7 +27,7 @@ with tt001 as(
     , t2.uid
   from
     ${database_name.l0_non_all_bdash}.bd_aggregate_summary_per_6month_url as t1
-    left join ${database_name.l1_pd_all_cdc}.cdc_id_master as t2 on array_contains(t2.member_seq_array, t1.kaiin_seq)
+    left join tt001 as t2 on t1.kaiin_seq = t2.member_seq
   where
     t1.time in (select max(time) from ${database_name.l0_non_all_bdash}.bd_aggregate_summary_per_6month_url)
 )
@@ -36,4 +47,4 @@ select
   , page_stay_avgtime
   , uid
 from
-  tt001
+  tt002

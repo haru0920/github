@@ -3,6 +3,18 @@
 -- @TD enable_cartesian_product:true
 with tt001 as(
   select
+      min(uid) as uid
+    , member_seq
+  from
+    ${database_name.l1_pd_all_cdc}.cdc_id_master
+    lateral view explode(member_seq_array) t as member_seq
+  group by
+    member_seq
+),
+
+-- IDマスタとの突合
+tt002 as(
+  select
       td_time_parse(t1.ymd, 'JST') as time
     , t1.visitor_id
     , t1.kaiin_seq
@@ -19,7 +31,7 @@ with tt001 as(
     , ROW_NUMBER() over() as row_number
   from
     ${database_name.l0_non_all_bdash}.bd_access_log as t1
-    left join ${database_name.l1_pd_all_cdc}.cdc_id_master as t2 on array_contains(t2.member_seq_array, t1.kaiin_seq)
+    left join tt001 as t2 on t1.kaiin_seq = t2.member_seq
   where
     t1.time in (select max(time) from ${database_name.l0_non_all_bdash}.bd_access_log)
 ),
@@ -48,11 +60,11 @@ tt101 as(
     , row_number
     , length(t4.category_id) as match_length
   from
-    tt001 as t1
+    tt002 as t1
     left join ${database_name.l1_non_all_hitmall}.hm_master_category_add_parameter as t2 on t1.query_cid = t2.category_id
     left join ${database_name.l1_non_all_hitmall}.hm_master_goods_cast as t3 on t1.query_ggcd = t3.shouhin_kanri_no
     -- left join ${database_name.l1_non_all_hitmall}.hm_master_category_add_parameter as t4 on array_contains(t1.query_array, t4.category_id)
-    left join ${database_name.l1_non_all_hitmall}.hm_master_category_add_parameter as t4 on t1.page_url like concat('%', t4.category_id, '%')
+    left join ${database_name.l1_non_all_hitmall}.hm_master_category_add_parameter as t4 on parse_url(t1.page_url, 'QUERY') like concat('%', t4.category_id, '%')
 ),
 
 -- レコードのユニーク処理

@@ -3,7 +3,7 @@ s3:
   parser:
     type: csv
     delimiter: "\",\""
-    quote: "null"
+    quote: "\"\\\"\""
     escape: "\"\\\\\""
     skip_header_lines: 0
     null_string: "\"\""
