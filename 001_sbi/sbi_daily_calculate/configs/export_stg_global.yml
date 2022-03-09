@@ -4,20 +4,25 @@ database_name:
     # ${database_name.l0.td_weblog}
     td_weblog: incudata_test_st
     # ${database_name.l0.mkdb_master}
-    mkdb_master: incudata_test_st
+    mkdb_master: sbi_test_stg
     # ${database_name.l0.mkdb_attribute}
-    mkdb_attribute: incudata_test_st
+    mkdb_attribute: sbi_test_stg
     # ${database_name.l0.mkdb_transaction}
-    mkdb_transaction: incudata_test_st
+    mkdb_transaction: sbi_test_stg
+    # ${database_name.l0.common_master}
+    common_master: sbi_test_stg
   # ${database_name.l1}
-  l1: incudata_test_st
+  #l1: incudata_test_st
+  l1: sbi_test_stg
+    # ${l1_id_master}
+  l1_id_master: sugimura_test
   # ${database_name.l2}
   l2: incudata_test_st
 
 # control db settings
 control:
   # control database name
-  database: incudata_test_st
+  database: sbi_test_stg
   # control table name
   table: ${init.process_name}_control_stg
 
@@ -28,7 +33,7 @@ record_process:
   # loop get data process start end record true/false
   sub_mode: true
   # record database
-  database: incudata_test_st
+  database: sbi_test_stg
   # record table
   table: ${init.process_name}_process_table_stg
 
