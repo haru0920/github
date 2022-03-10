@@ -1,12 +1,12 @@
-+record_process_start:
-  _export:
-    tmp:
-      mode: ${record_process.sub_mode}
-      status: "START"
-      process_name_sub: "${td.each.col01}__${td.each.col04}"
-      cnt: "-"
-  +call_start_process:
-    call>: ../../common/record_process.dig
+#+record_process_start:
+#  _export:
+#    tmp:
+#      mode: ${record_process.sub_mode}
+#      status: "START"
+#      process_name_sub: "${td.each.col01}__${td.each.col04}"
+#      cnt: "-"
+#  +call_start_process:
+#    call>: ../../common/record_process.dig
 
 +process_export:
   td>: ../../../queries/process/${td.each.col01}
@@ -23,12 +23,12 @@
     newline: ${karte.newline}
     applicationName: ${karte.applicationName}
 
-+record_process_end:
-  _export:
-    tmp:
-      mode: ${record_process.sub_mode}
-      status: "${init.record_process.status.end}"
-      process_name_sub: "${td.each.col01}__${td.each.col04}"
-      cnt: "-"
-  +call_end_process:
-    call>: ../../common/record_process.dig
+#+record_process_end:
+#  _export:
+#    tmp:
+#      mode: ${record_process.sub_mode}
+#      status: "${init.record_process.status.end}"
+#      process_name_sub: "${td.each.col01}__${td.each.col04}"
+#      cnt: "-"
+#  +call_end_process:
+#    call>: ../../common/record_process.dig

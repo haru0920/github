@@ -166,7 +166,7 @@ where  TD_TIME_RANGE(b.time,(select max(time) from ${database_name.l1}.t005_ever
                       ,(select max(time) from ${database_name.l0.mkdb_attribute}.m_fd_bond_balance)
                       ,null
                       ,'JST')
-             and record_date = TD_TIME_FORMAT(TD_SCHEDULED_TIME(),'yyyyMMdd','JST')
+             --and record_date = TD_TIME_FORMAT(TD_SCHEDULED_TIME(),'yyyyMMdd','JST')
              and product_code = '81'
              and specific_account_type in ('4','8')
              and sec_trade_country_code = '304'

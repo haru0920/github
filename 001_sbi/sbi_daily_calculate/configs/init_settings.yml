@@ -2,7 +2,7 @@
 process_name: sbi_daily_calculate
 
 # pro or stg
-mode: stg
+mode: pro
 
 # send mail mode true/false
 mail:
