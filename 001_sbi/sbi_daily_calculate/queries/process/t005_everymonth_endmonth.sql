@@ -1,6 +1,7 @@
 --実行日は毎月1日
 --前月分のt005_everymonth_endmonthからt005_everymonth_endmonth_historyを作成
-insert into ${database_name.l0.mkdb_transaction}.t005_everymonth_endmonth_history
+--insert into ${database_name.l0.mkdb_transaction}.t005_everymonth_endmonth_history
+insert into ${database_name.l1}.t005_everymonth_endmonth_history
 ( 
 select
    a.mkdb_id
