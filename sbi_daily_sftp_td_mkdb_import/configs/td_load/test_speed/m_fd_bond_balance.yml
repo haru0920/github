@@ -1,0 +1,82 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}"
+  parser:
+    type: csv
+    delimiter: ,
+    quote: "\""
+    escape: "¥"
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_month, type: string}
+    - {name: record_kind, type: string}
+    - {name: transaction_kind, type: string}
+    - {name: data_type, type: string}
+    - {name: product_code, type: string}
+    - {name: sec_trade_country_code, type: string}
+    - {name: securities_code, type: string}
+    - {name: ruitou_flg, type: string}
+    - {name: deposit_type, type: string}
+    - {name: specific_account_type, type: string}
+    - {name: keeping_code, type: string}
+    - {name: col_branch_code, type: string}
+    - {name: col_account_code, type: string}
+    - {name: loan_flg, type: string}
+    - {name: record_date, type: string}
+    - {name: keeping_date, type: string}
+    - {name: place_product_code, type: string}
+    - {name: deposit_quantity, type: string}
+    - {name: buying_quantity, type: string}
+    - {name: selling_quantity, type: string}
+    - {name: market_price, type: string}
+    - {name: market_value, type: string}
+    - {name: collateral_value_ratio, type: string}
+    - {name: collateral_value, type: string}
+    - {name: current_price, type: string}
+    - {name: per_unit, type: string}
+    - {name: sec_trade_currency_code, type: string}
+    - {name: iso_currency_code, type: string}
+
+################################
+### START footer common parts ##
+################################
+filters:
+- type: add_time
+  from_value:
+    mode: upload_time
+  to_column:
+    name: time
+
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

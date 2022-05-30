@@ -1,0 +1,71 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  decoders: 
+    - {type: gzip}
+  parser:
+    type: csv
+    delimiter: ","
+    quote: "\""
+    escape: "\""
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_month, type: string}
+    - {name: fim_friend_id, type: string}
+    - {name: fim_limit_month, type: string}
+    - {name: fim_insert_dt, type: string}
+    - {name: dummy01, type: string}
+
+################################
+### START filter common parts ##
+################################
+filters:
+- type: add_time
+  to_column:
+    name: time
+    type: timestamp
+  from_value:
+    value: ${session_unixtime}
+##############################
+### END filter common parts ##
+##############################
+
+- type: remove_columns
+  remove: ["dummy01"]
+
+################################
+### START footer common parts ##
+################################
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

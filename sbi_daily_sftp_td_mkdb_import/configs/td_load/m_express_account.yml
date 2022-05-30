@@ -1,0 +1,150 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  decoders: 
+    - {type: gzip}
+  parser:
+    type: csv
+    delimiter: ","
+    quote: "\""
+    escape: "\""
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_date, type: string}
+    - {name: receipt_number, type: string}
+    - {name: order_date, type: string}
+    - {name: route, type: string}
+    - {name: specific_kbn, type: string}
+    - {name: with_bank_flg, type: string}
+    - {name: friend_flg, type: string}
+    - {name: submit_method, type: string}
+    - {name: wl_create_status, type: string}
+    - {name: first_login, type: string}
+    - {name: trade_rest_status, type: string}
+    - {name: specific_status, type: string}
+    - {name: recv_nri, type: string}
+    - {name: send_ncs, type: string}
+    - {name: res_ncs, type: string}
+    - {name: res_ncs_date, type: string}
+    - {name: send_nri_trade_rest, type: string}
+    - {name: send_nri_specific, type: string}
+    - {name: bm_exp_open, type: string}
+    - {name: bm_specific, type: string}
+    - {name: bm_trade_rest, type: string}
+    - {name: p_ident_type, type: string}
+    - {name: p_ident_no, type: string}
+    - {name: p_ident_upload, type: string}
+    - {name: p_ident_file_nm, type: string}
+    - {name: upload_time, type: string}
+    - {name: error_flg, type: string}
+    - {name: error_msg, type: string}
+    - {name: delete_flg, type: string}
+    - {name: request_no, type: string}
+    - {name: foreign_acct_sts, type: string}
+    - {name: yobi1, type: string}
+    - {name: yobi2, type: string}
+    - {name: paper_cd, type: string}
+    - {name: paper_name, type: string}
+    - {name: purpose_cd, type: string}
+    - {name: dispatch_status_cd, type: string}
+    - {name: copies, type: string}
+    - {name: contents, type: string}
+    - {name: remarks, type: string}
+    - {name: request_date, type: string}
+    - {name: request_user_id, type: string}
+    - {name: update_user_id, type: string}
+    - {name: cancel_user_id, type: string}
+    - {name: cancel_flg, type: string}
+    - {name: option1, type: string}
+    - {name: selected_name1, type: string}
+    - {name: option2, type: string}
+    - {name: selected_name2, type: string}
+    - {name: option3, type: string}
+    - {name: selected_name3, type: string}
+    - {name: text1, type: string}
+    - {name: input_contents1, type: string}
+    - {name: text2, type: string}
+    - {name: input_contents2, type: string}
+    - {name: text3, type: string}
+    - {name: input_contents3, type: string}
+    - {name: text4, type: string}
+    - {name: input_contents4, type: string}
+    - {name: text5, type: string}
+    - {name: input_contents5, type: string}
+    - {name: sendmail, type: string}
+    - {name: dispatch_count, type: string}
+    - {name: prospectus_no, type: string}
+    - {name: individual_or_corp, type: string}
+    - {name: address1, type: string}
+    - {name: s_address1, type: string}
+    - {name: family_relation, type: string}
+    - {name: birthday, type: string}
+    - {name: sex, type: string}
+    - {name: job_cd, type: string}
+    - {name: settlement_term, type: string}
+    - {name: enquete_cd, type: string}
+    - {name: enquete_name, type: string}
+    - {name: easy_flg, type: string}
+    - {name: agent_id, type: string}
+    - {name: dealer_no, type: string}
+    - {name: specific_kind, type: string}
+    - {name: dividend_total_accept, type: string}
+    - {name: resident_prefecture_code, type: string}
+    - {name: trade_rest_status_2, type: string}
+    - {name: identity_confirm_doc_lmt, type: string}
+    - {name: submit_method_first, type: string}
+    - {name: identity_doc_code_star, type: string}
+    - {name: prov_mail_send, type: string}
+
+################################
+### START filter common parts ##
+################################
+filters:
+- type: add_time
+  to_column:
+    name: time
+    type: timestamp
+  from_value:
+    value: ${session_unixtime}
+##############################
+### END filter common parts ##
+##############################
+
+
+
+################################
+### START footer common parts ##
+################################
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

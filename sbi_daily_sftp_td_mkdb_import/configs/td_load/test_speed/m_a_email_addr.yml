@@ -1,0 +1,121 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}"
+  parser:
+    type: csv
+    delimiter: ,
+    quote: "\""
+    escape: "¥"
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_month, type: string}
+    - {name: aea_create_date, type: string}
+    - {name: aea_create_time, type: string}
+    - {name: aea_email_number, type: string}
+    - {name: aea_password_status, type: string}
+    - {name: aea_etrade_info, type: string}
+    - {name: aea_update_date, type: string}
+    - {name: aea_update_time, type: string}
+    - {name: aea_info_status, type: string}
+    - {name: aea_invest_status, type: string}
+    - {name: aea_atm_in_status, type: string}
+    - {name: aea_atm_out_status, type: string}
+    - {name: aea_fund_news_status, type: string}
+    - {name: aea_deficit_status, type: string}
+    - {name: aea_security_cash_status, type: string}
+    - {name: aea_security_cash_rate, type: string}
+    - {name: aea_fill_mail_cw, type: string}
+    - {name: aea_fill_mail_fx, type: string}
+    - {name: aea_fill_mail_fop, type: string}
+    - {name: aea_optin_flag, type: string}
+    - {name: aea_optin_date, type: string}
+    - {name: aea_optin_time, type: string}
+    - {name: aea_news3, type: string}
+    - {name: aea_news4, type: string}
+    - {name: aea_news5, type: string}
+    - {name: aea_news6, type: string}
+    - {name: aea_news7, type: string}
+    - {name: aea_news8, type: string}
+    - {name: aea_news9, type: string}
+    - {name: aea_news10, type: string}
+    - {name: aea_news11, type: string}
+    - {name: aea_news12, type: string}
+    - {name: aea_news13, type: string}
+    - {name: aea_news14, type: string}
+    - {name: aea_news15, type: string}
+    - {name: aea_news16, type: string}
+    - {name: aea_news17, type: string}
+    - {name: aea_news18, type: string}
+    - {name: aea_news19, type: string}
+    - {name: aea_news20, type: string}
+    - {name: aea_news21, type: string}
+    - {name: aea_news22, type: string}
+    - {name: aea_news23, type: string}
+    - {name: aea_news24, type: string}
+    - {name: aea_news25, type: string}
+    - {name: aea_news26, type: string}
+    - {name: aea_news27, type: string}
+    - {name: aea_news28, type: string}
+    - {name: aea_news29, type: string}
+    - {name: aea_news30, type: string}
+    - {name: aea_news31, type: string}
+    - {name: aea_fop_deficit_status, type: string}
+    - {name: aea_fund_inform_status, type: string}
+    - {name: aea_fund_advance_status, type: string}
+    - {name: aea_fund_advance_date, type: string}
+    - {name: aea_fund_result_status, type: string}
+    - {name: aea_coop_inform_status, type: string}
+    - {name: aea_ck365_email_status, type: string}
+    - {name: aea_ck365_info1_status, type: string}
+    - {name: aea_ck365_info2_status, type: string}
+    - {name: aea_ck365_info3_status, type: string}
+    - {name: aea_ck365_info4_status, type: string}
+    - {name: aea_ck365_info5_status, type: string}
+    - {name: aea_ck365_info6_status, type: string}
+    - {name: aea_ck365_info7_status, type: string}
+    - {name: aea_tr_news_status, type: string}
+    - {name: aea_ipopo_elected_status, type: string}
+
+################################
+### START footer common parts ##
+################################
+filters:
+- type: add_time
+  from_value:
+    mode: upload_time
+  to_column:
+    name: time
+
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

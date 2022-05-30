@@ -1,0 +1,23 @@
+# process name
+process_name: sbi_daily_sftp_td_mkdb_import
+
+# pro or stg
+mode: pro
+
+# recovery mode ture/false
+recovery_mode: false
+
+#recovery_query: "and cnt = '0'"
+#recovery_query: "and process_name_sub = 'm_trade_date_mm.yml' and status = 'END'"
+
+# send mail mode true/false
+mail:
+
+  # start mail
+  send_start: false
+
+  # success mail
+  send_end: false
+
+  # sla mail
+  send_sla: false

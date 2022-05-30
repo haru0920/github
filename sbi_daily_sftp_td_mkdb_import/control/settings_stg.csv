@@ -1,0 +1,14 @@
+﻿no,define_filename,in_filepath,out_database,out_table,out_mode
+1,m_bl_int_stock.yml,/tduser/send/m_bl_int_stock,incudata_test,m_bl_int_stock,append
+2,m_nisa_reserve.yml,/tduser/send/m_nisa_reserve,incudata_test,m_nisa_reserve,append
+3,m_open_acct_p.yml,/tduser/send/m_open_acct_p,incudata_test,m_open_acct_p,append
+4,m_svc_acct_profile.yml,/tduser/send/m_svc_acct_profile,incudata_test,m_svc_acct_profile,append
+5,m_trade_date_mm.yml,/tduser/send/m_trade_date_mm,incudata_test,m_trade_date_mm,append
+6,m_user_attrbute_info.yml,/tduser/send/m_user_attrbute_info,incudata_test,m_user_attrbute_info,append
+7,m_trade_history.yml,/tduser/send/m_trade_history,incudata_test,m_trade_history,append
+8,m_express_account.yml,/tduser/send/m_express_account,incudata_test,m_express_account,append
+9,m_fd_bond_balance.yml,/tduser/send/m_fd_bond_balance,incudata_test,m_fd_bond_balance,append
+10,m_sub_dealer_code_relation.yml,/tduser/send/m_sub_dealer_code_relation,incudata_test,m_sub_dealer_code_relation,append
+11,m_st_sec.yml,/tduser/send/m_st_sec,incudata_test,m_st_sec,append
+12,m_ipo_bosyu_user_status.yml,/tduser/send/m_ipo_bosyu_user_status,incudata_test,m_ipo_bosyu_user_status,append
+13,m_friend_introduction_manage.yml,/tduser/send/m_friend_introduction_manage,incudata_test,m_friend_introduction_manage,append

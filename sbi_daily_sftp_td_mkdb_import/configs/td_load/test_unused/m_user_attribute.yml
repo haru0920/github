@@ -1,0 +1,90 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  parser:
+    type: ${sftp.parser.type}
+    delimiter: ${sftp.parser.delimiter}
+    quote: ${sftp.parser.quote}
+    escape: ${sftp.parser.escape}
+    skip_header_lines: ${sftp.parser.skip_header_lines}
+    null_string: ${sftp.parser.null_string}
+    newline: ${sftp.parser.newline}
+    charset: ${sftp.parser.charset}
+    trim_if_not_quoted: ${sftp.parser.trim_if_not_quoted}
+    max_quoted_size_limit: ${sftp.parser.max_quoted_size_limit}
+    default_timezone: ${sftp.parser.default_timezone}
+    allow_optional_columns: ${sftp.parser.allow_optional_columns}
+    allow_extra_columns: ${sftp.parser.allow_extra_columns}
+    stop_on_invalid_record: ${sftp.parser.stop_on_invalid_record}
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: customer_id, type: string}
+    - {name: base_date, type: string}
+    - {name: broker_code, type: string}
+    - {name: last_contract_date, type: string}
+    - {name: prof_loss_stock, type: string}
+    - {name: prof_loss_for_stock, type: string}
+    - {name: prof_loss_trust, type: string}
+    - {name: prof_loss_for_trust, type: string}
+    - {name: prof_loss_trust_stock, type: string}
+    - {name: prof_loss_fu_op, type: string}
+    - {name: fu_op_require_margin, type: string}
+    - {name: fu_op_accept_margin, type: string}
+    - {name: create_user, type: string}
+    - {name: create_date, type: string}
+    - {name: update_user, type: string}
+    - {name: update_date, type: string}
+
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  parser:
+    type: ${sftp.parser.type}
+    delimiter: ${sftp.parser.delimiter}
+    quote: ${sftp.parser.quote}
+    escape: ${sftp.parser.escape}
+    skip_header_lines: ${sftp.parser.skip_header_lines}
+    null_string: ${sftp.parser.null_string}
+    newline: ${sftp.parser.newline}
+    charset: ${sftp.parser.charset}
+    trim_if_not_quoted: ${sftp.parser.trim_if_not_quoted}
+    max_quoted_size_limit: ${sftp.parser.max_quoted_size_limit}
+    default_timezone: ${sftp.parser.default_timezone}
+    allow_optional_columns: ${sftp.parser.allow_optional_columns}
+    allow_extra_columns: ${sftp.parser.allow_extra_columns}
+    stop_on_invalid_record: ${sftp.parser.stop_on_invalid_record}
+################################
+### END headder common parts ###
+################################

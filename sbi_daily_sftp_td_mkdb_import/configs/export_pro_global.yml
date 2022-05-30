@@ -1,0 +1,61 @@
+# td settings
+#td:
+#  database: 
+
+# sftp settings
+sftp:
+  host: ${secret:pro.sftp.host}
+  user: ${secret:pro.sftp.user}
+  port: ${secret:pro.sftp.port}
+  secret_key_passphrase: ${secret:pro.sftp.secret_key_passphrase}
+  secret_key_file: ${secret:pro.sftp.secret_key_file}
+
+# mail settings
+mail:
+
+  # start mail settings
+  start_subject: "[START][PRO]${init.process_name}"
+
+  # success mail settings
+  success_subject: "[SUCCESS][PRO]${init.process_name}"
+
+  # error mail settings
+  error_subject: "[ERROR][PRO]${init.process_name}"
+
+  # sla mail settings
+  sla_subject: "[SLA][PRO]${init.process_name}"
+
+  # notice mail settings
+  notice_subject: "[NOTICE][PRO]${init.process_name}"
+
+# control db settings
+control:
+  database: management_workflow
+  table: ${init.process_name}_control_pro
+
+# process settings
+process:
+
+  # loop calculate data setting
+  loop_process_data:
+
+    # parallel 0:multi full 1:single 2~:multi
+    parallel: 1
+
+    # sub_parallel 0:multi full 1:single 2~:multi
+    sub_parallel: 2
+
+  # record process setting
+  record_process:
+
+    # all process start end record true/false
+    mode: true
+
+    # loop get data process start end record true/false
+    sub_mode: true
+
+    # record database
+    database: management_workflow
+
+    # record table
+    table: ${init.process_name}_process_table_pro
