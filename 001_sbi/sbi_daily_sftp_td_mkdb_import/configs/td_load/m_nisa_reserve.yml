@@ -14,7 +14,9 @@ in:
   user_directory_is_root: ${sftp.user_directory_is_root}
   timeout: ${sftp.timeout}
   max_connection_retry: ${sftp.retry}
-  path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  path_prefix: "${td.each.in_filepath}_${moment(session_date_compact).add(-1,'days').format('YYYYMMDD')}"
+  decoders: 
+    - {type: gzip}
   parser:
     type: csv
     delimiter: ","

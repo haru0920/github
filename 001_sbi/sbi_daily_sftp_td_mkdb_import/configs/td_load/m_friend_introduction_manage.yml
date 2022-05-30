@@ -20,15 +20,15 @@ in:
   parser:
     type: csv
     delimiter: ","
-    quote: null
-    escape: null
+    quote: "\""
+    escape: "\""
     skip_header_lines: 0
     null_string: ""
-    newline: CRLF
+    newline: LF
     charset: EUC-JP
     max_quoted_size_limit: 131072
     default_timezone: Asia/Tokyo
-    allow_optional_columns: true
+    allow_optional_columns: false
     allow_extra_columns: false
     stop_on_invalid_record: false
 ################################
@@ -38,12 +38,10 @@ in:
     columns:
     - {name: mkdb_id, type: string}
     - {name: base_month, type: string}
-    - {name: goods, type: string}
-    - {name: min_date, type: string}
-    - {name: max_date, type: string}
-    - {name: rank_product, type: string}
+    - {name: fim_friend_id, type: string}
+    - {name: fim_limit_month, type: string}
+    - {name: fim_insert_dt, type: string}
     - {name: dummy01, type: string}
-    - {name: dummy02, type: string}
 
 ################################
 ### START filter common parts ##
@@ -60,7 +58,7 @@ filters:
 ##############################
 
 - type: remove_columns
-  remove: ["dummy01","dummy02"]
+  remove: ["dummy01"]
 
 ################################
 ### START footer common parts ##

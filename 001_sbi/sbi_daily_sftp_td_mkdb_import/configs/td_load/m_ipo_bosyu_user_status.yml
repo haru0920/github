@@ -1,0 +1,110 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}_${moment(session_date_compact).add(-1,'days').format('YYYYMMDD')}"
+  decoders: 
+    - {type: gzip}
+  parser:
+    type: csv
+    delimiter: ","
+    quote: "\""
+    escape: "\""
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_month, type: string}
+    - {name: ibus_bosyu_number, type: string}
+    - {name: ibus_syohin_type, type: string}
+    - {name: ibus_product_code, type: string}
+    - {name: ibus_product_name, type: string}
+    - {name: ibus_trade_date, type: string}
+    - {name: ibus_settle_date, type: string}
+    - {name: ibus_shijyo_name, type: string}
+    - {name: ibus_callcenter_kbn, type: string}
+    - {name: ibus_user_id, type: string}
+    - {name: ibus_application_status, type: string}
+    - {name: ibus_application_date, type: string}
+    - {name: ibus_application_quantity, type: string}
+    - {name: ibus_quantity_unit_name, type: string}
+    - {name: ibus_application_price, type: string}
+    - {name: ibus_price_unit_name, type: string}
+    - {name: ibus_acquire_point, type: string}
+    - {name: ibus_actual_quantity, type: string}
+    - {name: ibus_actual_amount, type: string}
+    - {name: ibus_actual_flg, type: string}
+    - {name: ibus_elected_status, type: string}
+    - {name: ibus_elected_date, type: string}
+    - {name: ibus_supplement_number, type: string}
+    - {name: ibus_elected_quantity, type: string}
+    - {name: ibus_elected_amount, type: string}
+    - {name: ibus_result_reflection_flg, type: string}
+    - {name: ibus_decision_status, type: string}
+    - {name: ibus_decision_date, type: string}
+    - {name: ibus_decision_quantity, type: string}
+    - {name: ibus_decision_amount, type: string}
+    - {name: ibus_buy_date, type: string}
+    - {name: ibus_buy_quantity, type: string}
+    - {name: ibus_buy_amount, type: string}
+    - {name: ibus_nri_flg, type: string}
+    - {name: ibus_operation_id, type: string}
+    - {name: ibus_operation_date, type: string}
+    - {name: ibus_elected_sup_quantity, type: string}
+    - {name: ibus_elected_perfect_quantity, type: string}
+    - {name: ibus_elected_allot_quantity, type: string}
+    - {name: ibus_exception_flg, type: string}
+    - {name: ibus_actual_account, type: string}
+    - {name: ibus_decision_account, type: string}
+    - {name: ibus_nisa_appl_quantity, type: string}
+    - {name: dummy01, type: string}
+
+################################
+### START filter common parts ##
+################################
+filters:
+- type: add_time
+  to_column:
+    name: time
+    type: timestamp
+  from_value:
+    value: ${session_unixtime}
+##############################
+### END filter common parts ##
+##############################
+
+- type: remove_columns
+  remove: ["dummy01"]
+
+################################
+### START footer common parts ##
+################################
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

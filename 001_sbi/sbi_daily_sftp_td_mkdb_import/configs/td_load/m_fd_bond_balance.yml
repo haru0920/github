@@ -14,21 +14,21 @@ in:
   user_directory_is_root: ${sftp.user_directory_is_root}
   timeout: ${sftp.timeout}
   max_connection_retry: ${sftp.retry}
-  path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  path_prefix: "${td.each.in_filepath}_${moment(session_date_compact).add(-1,'days').format('YYYYMMDD')}"
   decoders: 
     - {type: gzip}
   parser:
     type: csv
     delimiter: ","
-    quote: null
-    escape: null
+    quote: "\""
+    escape: "\\"
     skip_header_lines: 0
     null_string: ""
-    newline: CRLF
+    newline: LF
     charset: EUC-JP
     max_quoted_size_limit: 131072
     default_timezone: Asia/Tokyo
-    allow_optional_columns: true
+    allow_optional_columns: false
     allow_extra_columns: false
     stop_on_invalid_record: false
 ################################
@@ -38,12 +38,34 @@ in:
     columns:
     - {name: mkdb_id, type: string}
     - {name: base_month, type: string}
-    - {name: goods, type: string}
-    - {name: min_date, type: string}
-    - {name: max_date, type: string}
-    - {name: rank_product, type: string}
-    - {name: dummy01, type: string}
-    - {name: dummy02, type: string}
+    - {name: record_kind, type: string}
+    - {name: transaction_kind, type: string}
+    - {name: data_type, type: string}
+    - {name: product_code, type: string}
+    - {name: sec_trade_country_code, type: string}
+    - {name: securities_code, type: string}
+    - {name: ruitou_flg, type: string}
+    - {name: deposit_type, type: string}
+    - {name: specific_account_type, type: string}
+    - {name: keeping_code, type: string}
+    - {name: col_branch_code, type: string}
+    - {name: col_account_code, type: string}
+    - {name: loan_flg, type: string}
+    - {name: record_date, type: string}
+    - {name: keeping_date, type: string}
+    - {name: place_product_code, type: string}
+    - {name: deposit_quantity, type: string}
+    - {name: buying_quantity, type: string}
+    - {name: selling_quantity, type: string}
+    - {name: market_price, type: string}
+    - {name: market_value, type: string}
+    - {name: collateral_value_ratio, type: string}
+    - {name: collateral_value, type: string}
+    - {name: current_price, type: string}
+    - {name: per_unit, type: string}
+    - {name: sec_trade_currency_code, type: string}
+    - {name: iso_currency_code, type: string}
+
 
 ################################
 ### START filter common parts ##
@@ -59,8 +81,6 @@ filters:
 ### END filter common parts ##
 ##############################
 
-- type: remove_columns
-  remove: ["dummy01","dummy02"]
 
 ################################
 ### START footer common parts ##

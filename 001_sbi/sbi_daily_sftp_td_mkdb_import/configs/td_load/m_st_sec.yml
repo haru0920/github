@@ -1,0 +1,146 @@
+##################################
+### START headder common parts ###
+##################################
+in:
+  type: sftp
+  host: ${sftp.host}
+  user: ${sftp.user}
+  port: ${sftp.port}
+  # password: 
+  secret_key_passphrase: ${sftp.secret_key_passphrase}
+  secret_key_file: 
+    content: |
+      ${sftp.secret_key_file}
+  user_directory_is_root: ${sftp.user_directory_is_root}
+  timeout: ${sftp.timeout}
+  max_connection_retry: ${sftp.retry}
+  path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  decoders: 
+    - {type: gzip}
+  parser:
+    type: csv
+    delimiter: ","
+    quote: "\""
+    escape: null
+    skip_header_lines: 0
+    null_string: ""
+    newline: LF
+    charset: EUC-JP
+    max_quoted_size_limit: 131072
+    default_timezone: Asia/Tokyo
+    allow_optional_columns: false
+    allow_extra_columns: false
+    stop_on_invalid_record: false
+################################
+### END headder common parts ###
+################################
+
+    columns:
+    - {name: mkdb_id, type: string}
+    - {name: base_month, type: string}
+    - {name: base_date, type: string}
+    - {name: customer_id, type: string}
+    - {name: ec_no, type: string}
+    - {name: trade_date, type: string}
+    - {name: trade_exec_date, type: string}
+    - {name: trade_seq, type: string}
+    - {name: exec_flg, type: string}
+    - {name: trade_cancel_flg, type: string}
+    - {name: web_order_flg, type: string}
+    - {name: modify_flg, type: string}
+    - {name: cancel_flg, type: string}
+    - {name: lose_flg, type: string}
+    - {name: order_type, type: string}
+    - {name: settle_cd, type: string}
+    - {name: buy_sell, type: string}
+    - {name: hitokutei_trade_kbn, type: string}
+    - {name: brand_cd, type: string}
+    - {name: trade, type: string}
+    - {name: market_cd, type: string}
+    - {name: brand_name, type: string}
+    - {name: lose_notice_flg, type: string}
+    - {name: market_order_date, type: string}
+    - {name: quantity, type: string}
+    - {name: price, type: string}
+    - {name: impose_tax_flg, type: string}
+    - {name: order_date, type: string}
+    - {name: route, type: string}
+    - {name: order_id, type: string}
+    - {name: commission_flg, type: string}
+    - {name: exec_quantity, type: string}
+    - {name: exec_price, type: string}
+    - {name: commission, type: string}
+    - {name: exec_amount, type: string}
+    - {name: tax, type: string}
+    - {name: keijou_quantity, type: string}
+    - {name: keijou_price, type: string}
+    - {name: keijou_commission, type: string}
+    - {name: keijou_amount, type: string}
+    - {name: keijou_tax, type: string}
+    - {name: modify_date, type: string}
+    - {name: repayment_limit, type: string}
+    - {name: dealer_no, type: string}
+    - {name: sasinari_flg, type: string}
+    - {name: rbe_order_kind, type: string}
+    - {name: rbe_order_flg, type: string}
+    - {name: rbe_cancel_flg, type: string}
+    - {name: rbe_modify_flg, type: string}
+    - {name: rbe_cancel_modify_kbn, type: string}
+    - {name: origin_trg_zone, type: string}
+    - {name: origin_trg_price, type: string}
+    - {name: soon_trg_zone, type: string}
+    - {name: soon_trg_price, type: string}
+    - {name: modify_trg_zone, type: string}
+    - {name: modify_trg_price, type: string}
+    - {name: transfer_kbn, type: string}
+    - {name: sor_kbn, type: string}
+    - {name: dealer_code, type: string}
+    - {name: user_id, type: string}
+    - {name: ip_address, type: string}
+    - {name: bulk_order_no, type: string}
+    - {name: theme_id, type: string}
+    - {name: theme_course, type: string}
+    - {name: theme_regist_date, type: string}
+    - {name: origin_oco_sasinari_flg, type: string}
+    - {name: origin_oco_price, type: string}
+    - {name: immediate_oco_sasinari_flg, type: string}
+    - {name: immediate_oco_price, type: string}
+    - {name: special_inout_kbn, type: string}
+    - {name: auto_order_type, type: string}
+    - {name: auto_order_id, type: string}
+    - {name: done_sasinari_flg, type: string}
+    - {name: done_limit_price, type: string}
+    - {name: done_expire_date, type: string}
+    - {name: done_rbe_order_kind, type: string}
+    - {name: done_trg_zone, type: string}
+    - {name: done_trg_price, type: string}
+    - {name: done_oco_sasinari_flg, type: string}
+    - {name: done_oco_price, type: string}
+    - {name: dummy01, type: string}
+
+################################
+### START filter common parts ##
+################################
+filters:
+- type: add_time
+  to_column:
+    name: time
+    type: timestamp
+  from_value:
+    value: ${session_unixtime}
+##############################
+### END filter common parts ##
+##############################
+
+- type: remove_columns
+  remove: ["dummy01"]
+
+################################
+### START footer common parts ##
+################################
+out: 
+  type: td
+  mode: ${td.each.out_mode}
+##############################
+### END footer common parts ##
+##############################

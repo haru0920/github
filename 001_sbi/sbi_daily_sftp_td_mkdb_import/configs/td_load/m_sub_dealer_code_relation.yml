@@ -16,7 +16,7 @@ in:
   max_connection_retry: ${sftp.retry}
   path_prefix: "${td.each.in_filepath}_${session_date_compact}"
   decoders: 
-    - {type: gzip}
+   - {type: gzip}
   parser:
     type: csv
     delimiter: ","
@@ -24,11 +24,11 @@ in:
     escape: null
     skip_header_lines: 0
     null_string: ""
-    newline: CRLF
+    newline: LF
     charset: EUC-JP
     max_quoted_size_limit: 131072
     default_timezone: Asia/Tokyo
-    allow_optional_columns: true
+    allow_optional_columns: false
     allow_extra_columns: false
     stop_on_invalid_record: false
 ################################
@@ -38,12 +38,22 @@ in:
     columns:
     - {name: mkdb_id, type: string}
     - {name: base_month, type: string}
-    - {name: goods, type: string}
-    - {name: min_date, type: string}
-    - {name: max_date, type: string}
-    - {name: rank_product, type: string}
+    - {name: customer_attribute, type: string}
+    - {name: visible_buten_code, type: string}
+    - {name: broker_code, type: string}
+    - {name: id_pw_flg, type: string}
+    - {name: reserve, type: string}
+    - {name: emp_cr_cd, type: string}
+    - {name: emp_fa_cd, type: string}
+    - {name: emp_cs_cd, type: string}
+    - {name: intermediary_emp_cd, type: string}
+    - {name: delete_flg, type: string}
+    - {name: create_date, type: string}
+    - {name: update_date, type: string}
+    - {name: delete_date, type: string}
+    - {name: update_user, type: string}
     - {name: dummy01, type: string}
-    - {name: dummy02, type: string}
+
 
 ################################
 ### START filter common parts ##
@@ -60,7 +70,7 @@ filters:
 ##############################
 
 - type: remove_columns
-  remove: ["dummy01","dummy02"]
+  remove: ["dummy01"]
 
 ################################
 ### START footer common parts ##

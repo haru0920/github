@@ -15,6 +15,8 @@ in:
   timeout: ${sftp.timeout}
   max_connection_retry: ${sftp.retry}
   path_prefix: "${td.each.in_filepath}_${session_date_compact}"
+  decoders: 
+    - {type: gzip}
   parser:
     type: csv
     delimiter: ","
